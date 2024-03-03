@@ -15596,14 +15596,14 @@ h3.title-main:after {
   color: #fff;
 }
 
-.w3l-main-slider .banner-info-bg h5 {
+.w3l-main-slider .banner-info-bg h2 {
   font-size: 70px;
   line-height: 80px;
   font-weight: bold;
   color: #fff;
 }
 
-.w3l-main-slider .banner-info-bg h5 span {
+.w3l-main-slider .banner-info-bg h2 span {
   font-weight: 300;
   display: block;
 }
