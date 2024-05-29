@@ -1,4 +1,4 @@
-# 5月28日|22.2M/S，最新高速免费节点，Clash/V2ray/Shadowrocket/SSR订阅链接地址  更新时间 2024-05-28 09:30:16
+# 5月29日|19.3M/S，最新高速免费节点，Shadowrocket/SSR/V2ray/Clash订阅链接地址  更新时间 2024-05-29 10:13:01
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://v2raynode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,19 +9,19 @@
 
 ### Clash订阅链接
 
-- https://v2raynode.github.io/uploads/2024/05/0-20240528.yaml
-- https://v2raynode.github.io/uploads/2024/05/1-20240528.yaml
-- https://v2raynode.github.io/uploads/2024/05/2-20240528.yaml
-- https://v2raynode.github.io/uploads/2024/05/3-20240528.yaml
-- https://v2raynode.github.io/uploads/2024/05/4-20240528.yml
+- https://v2raynode.github.io/uploads/2024/05/0-20240529.yaml
+- https://v2raynode.github.io/uploads/2024/05/1-20240529.yaml
+- https://v2raynode.github.io/uploads/2024/05/2-20240529.yaml
+- https://v2raynode.github.io/uploads/2024/05/3-20240529.yaml
+- https://v2raynode.github.io/uploads/2024/05/4-20240529.yml
 
 ### V2ray订阅链接
 
-- https://v2raynode.github.io/uploads/2024/05/0-20240528.txt
-- https://v2raynode.github.io/uploads/2024/05/1-20240528.txt
-- https://v2raynode.github.io/uploads/2024/05/2-20240528.txt
-- https://v2raynode.github.io/uploads/2024/05/3-20240528.txt
-- https://v2raynode.github.io/uploads/2024/05/4-20240528.txt
+- https://v2raynode.github.io/uploads/2024/05/0-20240529.txt
+- https://v2raynode.github.io/uploads/2024/05/1-20240529.txt
+- https://v2raynode.github.io/uploads/2024/05/2-20240529.txt
+- https://v2raynode.github.io/uploads/2024/05/3-20240529.txt
+- https://v2raynode.github.io/uploads/2024/05/4-20240529.txt
 
 ## 更多clash节点订阅 ：
 
