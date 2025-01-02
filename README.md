@@ -1,4 +1,4 @@
-# 1月1日|18.6M/S，最新高速免费节点，SSR/Shadowrocket/V2ray/Clash订阅链接地址，科学上网  更新时间 2025-01-01 06:44:07
+# 1月2日|22.8M/S，最新高速免费节点，SSR/Clash/Shadowrocket/V2ray订阅链接地址，科学上网  更新时间 2025-01-02 10:05:01
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://v2raynode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://v2raynode.github.io/uploads/2025/01/0-20250101.yaml
-- https://v2raynode.github.io/uploads/2025/01/1-20250101.yaml
-- https://v2raynode.github.io/uploads/2025/01/2-20250101.yaml
-- https://v2raynode.github.io/uploads/2025/01/3-20250101.yaml
-- https://v2raynode.github.io/uploads/2025/01/4-20250101.yaml
+- https://v2raynode.github.io/uploads/2025/01/0-20250102.yaml
+- https://v2raynode.github.io/uploads/2025/01/1-20250102.yaml
+- https://v2raynode.github.io/uploads/2025/01/2-20250102.yaml
+- https://v2raynode.github.io/uploads/2025/01/3-20250102.yaml
+- https://v2raynode.github.io/uploads/2025/01/4-20250102.yaml
 
 ### V2ray订阅链接
 
-- https://v2raynode.github.io/uploads/2025/01/0-20250101.txt
-- https://v2raynode.github.io/uploads/2025/01/1-20250101.txt
-- https://v2raynode.github.io/uploads/2025/01/2-20250101.txt
-- https://v2raynode.github.io/uploads/2025/01/3-20250101.txt
-- https://v2raynode.github.io/uploads/2025/01/4-20250101.txt
+- https://v2raynode.github.io/uploads/2025/01/0-20250102.txt
+- https://v2raynode.github.io/uploads/2025/01/1-20250102.txt
+- https://v2raynode.github.io/uploads/2025/01/2-20250102.txt
+- https://v2raynode.github.io/uploads/2025/01/3-20250102.txt
+- https://v2raynode.github.io/uploads/2025/01/4-20250102.txt
 
 ### Sing-box订阅链接
 
-- https://v2raynode.github.io/uploads/2025/01/20250101.json
+- https://v2raynode.github.io/uploads/2025/01/20250102.json
 
 ## 更多clash节点订阅 ：
 
