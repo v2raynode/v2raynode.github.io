@@ -2,14 +2,13 @@
 <html lang="zh-CN">
 
 <head>
-        <link rel="canonical" href="https://v2raynode.github.io" />
+        <link rel="canonical" href="https://v2raynode.github.io/news/article-35861.htm" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>关于我们 - V2rayNode节点分享站</title>
+    <title>一文弄懂Spring Boot应用分层构建Docker Image镜像</title>
     <link rel="icon" href="/assets/website/img/v2raynode/favicon.ico" type="image/x-icon"/>
-        <meta name="keywords" content="关于我们 - V2rayNode节点分享站" />
-        <meta name="description" content="关于我们 - V2rayNode节点分享站" />
+        <meta name="description" content="之前一直使用Dockerfile的方式将Spring Boot应用构建成Docker Image, 发现jar包只有十几兆，但是构建出现的镜像有几百兆，传输的时候非常慢。后来发现spring-boot" />
         <!-- google-fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- //google-fonts -->
@@ -28,7 +27,7 @@
      crossorigin="anonymous"></script>
 </head>
 
-<body data-page="newly_discovered_nodes">
+<body data-page="detail">
     <!--header-->
     <header id="site-header" class="fixed-top">
         <div class="container-fluid">
@@ -86,10 +85,11 @@
     <div class="inner-banner">
         <section class="w3l-breadcrumb">
             <div class="container">
-                <h1 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2" style="line-height: 3rem;word-break: break-all;">关于我们</h1>
+                <h1 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2" style="line-height: 3rem;word-break: break-all;">一文弄懂Spring Boot应用分层构建Docker Image镜像</h1>
                 <ul class="breadcrumbs-custom-path">
                     <li><a href="/">首页</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>关于我们</li>
+                    <li><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span><a href="/news/">新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
                 </ul>
             </div>
         </section>
@@ -100,14 +100,13 @@
         <div class="container py-md-5 py-4">
             <div class="row">
                 <div class="col-md-9">
-                    <p>在网络的浩瀚宇宙中，有一个名字如同璀璨的星辰，照亮了无数寻求自由网络之路的人们——V2rayNode节点分享站。这不仅仅是一个提供免费节点订阅服务的平台，更是一场关于勇气、智慧与梦想的创业传奇。</p>
-<p>故事的起点，可以追溯到那个网络封锁日益严重的年代。那时，网络世界仿佛被一层无形的墙所隔绝，人们渴望着能够自由穿梭于信息的海洋之中。正是在这样的背景下，V2rayNode节点分享站的创始人，一位名叫李明的年轻工程师，怀揣着对自由的渴望和对技术的热爱，踏上了创业之路。</p>
-<p>李明原本在一家知名互联网公司担任技术骨干，每天面对着繁琐的代码和无尽的压力。然而，他内心深处始终有一个声音在呼唤，那就是打破网络束缚，让每一个人都能享受到自由、平等的网络访问权。于是，他毅然决然地辞去了工作，踏上了创业的征途。</p>
-<p>起初，李明的创业之路并不顺利。他面临着资金短缺、技术难题以及来自各方面的压力和质疑。然而，他并没有放弃，而是凭借着对技术的深厚功底和对梦想的执着追求，一步步克服了一个又一个难关。</p>
-<p>在这个过程中，李明遇到了志同道合的伙伴们。他们有的是经验丰富的程序员，有的是对网络自由充满热情的年轻人。大家汇聚一堂，共同为V2rayNode节点分享站的未来而努力。他们日夜奋战，不断优化平台功能，提升用户体验。终于，在无数个不眠之夜后，V2rayNode节点分享站横空出世，以其稳定、高效的免费节点订阅服务，迅速赢得了广大用户的喜爱和信赖。</p>
-<p>然而，创业的道路从来都不是一帆风顺的。随着V2rayNode节点分享站的知名度越来越高，也引来了不少竞争对手的恶意攻击和诽谤。面对这些挑战，李明和他的团队始终保持着冷静和理智。他们坚信，只要坚持为用户提供优质的服务和真诚的态度，就一定能够赢得用户的信任和支持。</p>
-<p>如今，V2rayNode节点分享站已经成为了一个备受瞩目的创业传奇。它不仅为用户提供了便捷、高效的免费节点订阅服务，更成为了网络自由、信息平等的象征。在这个充满挑战和机遇的时代里，V2rayNode节点分享站将继续秉持着初心和使命，为每一个渴望自由网络的人们保驾护航。</p>
-                </div>
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>之前一直使用<code>Dockerfile</code>的方式将<code>Spring Boot应用</code>构建成<code>Docker Image</code>, 发现jar包只有十几兆，但是构建出现的镜像有几百兆，传输的时候非常慢。后来发现<code>spring-boot-maven-plugin</code>插件可以分层构建<code>Docker Image</code>，尝试了一下，效果挺不错。</p> <h2>常用构建方式</h2> <p>将<code>Spring Boot</code>应用打包成<code>Docker Image</code>最常用的方式使用编写<code>Dockerfile</code>,使用<code>docker build</code>命令手动打包。</p> <p><code>Dockerfile</code>内容如下：</p> <pre><code>FROM openjdk:17 WORKDIR /app COPY target/*.jar /app/app.jar ENTRYPOINT ["java","-jar","/app/app.jar"] 复制代码</code></pre> <ol> <li>构建过程：</li> </ol> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/429baa14cec3ae67b2a7c07567373943.jpg"></p> <ol> <li>构建结果：</li> </ol> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/c45c499f51a5501708621129f6f47409.jpg"></p> <p>使用<code>docker images</code>查看镜像，可以发现多了两个镜像:<code>webflux_demo_file</code>和<code>openjdk</code>。<code>webflux_demo_file</code>是应用程序最终构建的镜像，<code>openjdk</code>是被依赖的基础镜像。从镜像大小我们可以看到<code>webflux_demo_file</code>镜像共796m，而基础镜像<code>openjdk</code>就占了471m。</p> <h2>分层构建</h2> <p><code>spring boot 2.3</code>之后的<code>spring-boot-maven-plugin</code>插件支持将应用程序构建成<code>Docker Image</code>，并且支持分层构建、将镜像推送到镜像仓库等功能。</p> <p>要使用<code>spring-boot-maven-plugin</code>插件分层构建应用程序，需要在<code>pom</code>文件中加入一些配置。</p> <ol> <li>修改<code>pom</code>文件</li> </ol> <p>在<code>spring-boot-maven-plugin</code>增加配置开启分层构建并配置分层的方式。</p> <pre><code> &lt;properties&gt;     &lt;!--声明时间戳的格式化方式--&gt;     &lt;maven.build.timestamp.format&gt;yyyyMMddHHmmss&lt;/maven.build.timestamp.format&gt; &lt;/properties&gt;   &lt;plugin&gt;     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;     &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;     &lt;configuration&gt;         &lt;layers&gt;             &lt;!--开启分层构建--&gt;             &lt;enabled&gt;true&lt;/enabled&gt;              &lt;!--构建配置--&gt;             &lt;configuration&gt;${project.basedir}/layers.xml&lt;/configuration&gt;         &lt;/layers&gt;         &lt;image&gt;             &lt;!--镜像名称， 使用构建时间作为镜像的版本号--&gt;             &lt;name&gt;example.com/webflux_demo:${maven.build.timestamp}&lt;/name&gt;         &lt;/image&gt;     &lt;/configuration&gt; &lt;/plugin&gt; 复制代码</code></pre> <ol> <li>创建<code>layers.xml</code>文件</li> </ol> <p><code>layers.xml</code>文件配置了分层构建的方式，内容如下：</p> <pre><code>&lt;layers xmlns="http://www.springframework.org/schema/boot/layers"         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"         xsi:schemaLocation="http://www.springframework.org/schema/boot/layers                           https://www.springframework.org/schema/boot/layers/layers-2.6.xsd"&gt;     &lt;application&gt;         &lt;into layer="spring-boot-loader"&gt;             &lt;include&gt;org/springframework/boot/loader/**&lt;/include&gt;         &lt;/into&gt;         &lt;into layer="application" /&gt;     &lt;/application&gt;     &lt;dependencies&gt;         &lt;into layer="application"&gt;             &lt;includeModuleDependencies /&gt;         &lt;/into&gt;         &lt;into layer="snapshot-dependencies"&gt;             &lt;include&gt;*:*:*SNAPSHOT&lt;/include&gt;         &lt;/into&gt;         &lt;into layer="dependencies" /&gt;     &lt;/dependencies&gt;     &lt;layerOrder&gt;         &lt;layer&gt;dependencies&lt;/layer&gt;         &lt;layer&gt;spring-boot-loader&lt;/layer&gt;         &lt;layer&gt;snapshot-dependencies&lt;/layer&gt;         &lt;layer&gt;application&lt;/layer&gt;     &lt;/layerOrder&gt; &lt;/layers&gt; 复制代码</code></pre> <ol> <li>构建镜像</li> </ol> <p>使用<code>mvn spring-boot:build-image</code>命令或者在<code>maven工具</code>中双击<code>spring-boot:build-image</code>开始构建镜像。如图</p> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/375789a5e25fcff0fa1fbc7d0a3cd9ef.jpg"></p> <ol> <li>构建信息</li> </ol> <p>构建信息过多，这里截取部分。如下图</p> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/e572a8ba7e2496bf86c578628cde18dc.jpg"></p> <ol> <li>构建结果</li> </ol> <p>使用<code>docker images</code>查看镜像，可以看到使用这种方式构建的镜像只有282m。比使用之前的镜像小了一半。</p> <p style="text-align:center;"><img decoding="async" alt="image.png" src="http://img.555519.xyz/uploads3/20220602/55d85721394f1b8072e115cb9343dd06.jpg"></p> <blockquote> <p>美中不足的是构建的时候需要从github下载一个包，导致构建时间很长</p> </blockquote> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-35385.htm">宠物粮食品牌前十名排行榜有哪些呢（宠物粮生产厂家排名）</a></p>
+                                        <p>下一个：<a href="/news/article-35862.htm">宠物粮品牌故事怎么写的（宠物粮商标取名大全）</a></p>
+                                    </div>
+                                </div>
                 <div class="col-md-3">
                     <div class="panel panel-default">
     <div class="panel-heading">
@@ -115,16 +114,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-3-clash-node-daily-updates.htm" title="11月3日|18.6M/S，最新高速免费节点，SSR/Clash/Shadowrocket/V2ray订阅链接地址，科学上网">11月3日|18.6M/S，最新高速免费节点，SSR/Clash/Shadowrocket/V2ray订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-20-free-v2ray-subscribe.htm" title="10月20日|23M/S，最新高速免费节点，Clash/V2ray/SSR/Shadowrocket订阅链接地址，科学上网">10月20日|23M/S，最新高速免费节点，Clash/V2ray/SSR/Shadowrocket订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-clash.htm" title="11月26日|20.3M/S，最新高速免费节点，SSR/Shadowrocket/Clash/V2ray订阅链接地址，科学上网">11月26日|20.3M/S，最新高速免费节点，SSR/Shadowrocket/Clash/V2ray订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-30668.htm" title="领养宠物需要归还吗（领养宠物要花钱嘛）">领养宠物需要归还吗（领养宠物要花钱嘛）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-free-v2ray.htm" title="12月6日|21.5M/S，最新高速免费节点，Shadowrocket/V2ray/SSR/Clash订阅链接地址，科学上网">12月6日|21.5M/S，最新高速免费节点，Shadowrocket/V2ray/SSR/Clash订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-24476.htm" title="北京芭比堂动物医院有限责任公司（北京芭比堂宠物）">北京芭比堂动物医院有限责任公司（北京芭比堂宠物）</a></li>
+                        <li class="py-2"><a href="/news/article-21837.htm" title="Java中线程状态+线程安全问题+synchronized的用法详解_java_">Java中线程状态+线程安全问题+synchronized的用法详解_java_</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-node-subscribe.htm" title="11月14日|19.4M/S，最新高速免费节点，SSR/Clash/V2ray/Shadowrocket订阅链接地址，科学上网">11月14日|19.4M/S，最新高速免费节点，SSR/Clash/V2ray/Shadowrocket订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-21375.htm" title="成都市动物防疫站免费疫苗预约（成都动物防疫站电话）">成都市动物防疫站免费疫苗预约（成都动物防疫站电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-4-free-high-speed-nodes.htm" title="12月4日|19.7M/S，最新高速免费节点，SSR/Shadowrocket/V2ray/Clash订阅链接地址，科学上网">12月4日|19.7M/S，最新高速免费节点，SSR/Shadowrocket/V2ray/Clash订阅链接地址，科学上网</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-1-3-node-share.htm" title="1月3日|21M/S，最新高速免费节点，V2ray/SSR/Shadowrocket/Clash订阅链接地址，科学上网">1月3日|21M/S，最新高速免费节点，V2ray/SSR/Shadowrocket/Clash订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/news/article-28783.htm" title="开宠物店需要注意的问题（开宠物店需要注意的问题）">开宠物店需要注意的问题（开宠物店需要注意的问题）</a></li>
-                        <li class="py-2"><a href="/news/article-26926.htm" title="小型颗粒饲料机多少钱一台 小型颗粒饲料机多少钱一台最便宜">小型颗粒饲料机多少钱一台 小型颗粒饲料机多少钱一台最便宜</a></li>
-                        <li class="py-2"><a href="/news/article-27849.htm" title="php错误/异常/日志及常见调试和排错_在线工具">php错误/异常/日志及常见调试和排错_在线工具</a></li>
-                        <li class="py-2"><a href="/news/article-33064.htm" title="领养宠物需要归还吗（领养宠物要花钱嘛）">领养宠物需要归还吗（领养宠物要花钱嘛）</a></li>
-                        <li class="py-2"><a href="/news/article-20915.htm" title="猫味道很大房屋内怎么去除（房间猫咪异味怎样彻底清除）">猫味道很大房屋内怎么去除（房间猫咪异味怎样彻底清除）</a></li>
-                        <li class="py-2"><a href="/news/article-35861.htm" title="一文弄懂Spring Boot应用分层构建Docker Image镜像">一文弄懂Spring Boot应用分层构建Docker Image镜像</a></li>
-                        <li class="py-2"><a href="/news/article-26458.htm" title="猫三联几针产生抗体（猫三联几针有抗体）">猫三联几针产生抗体（猫三联几针有抗体）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-16-free-subscribe-node.htm" title="12月16日|22.2M/S，最新高速免费节点，V2ray/Clash/SSR/Shadowrocket订阅链接地址，科学上网">12月16日|22.2M/S，最新高速免费节点，V2ray/Clash/SSR/Shadowrocket订阅链接地址，科学上网</a></li>
                     </ul>
     </div>
 </div>
@@ -330,7 +329,6 @@
     <!-- //Js scripts -->
     <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
     <script src="/assets/website/js/frontend/G.js"></script>
-
 </body>
 
 </html>
