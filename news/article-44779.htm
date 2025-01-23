@@ -1,0 +1,362 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raynode.github.io/news/article-44779.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>安装Docker、Harbor、Jenkins、Gitlab</title>
+    <link rel="icon" href="/assets/website/img/v2raynode/favicon.ico" type="image/x-icon"/>
+        <meta name="description" content="文章目录  系统平台信息 依赖   Docker     设置存储库   Docker-Compose   Go Java Maven Gitlab   安装 配置 启动 使用Gitlab   [Ne" />
+    
+    <meta name="author" content="V2rayNode节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raynode.github.io/news/article-44779.htm" />
+    <meta property="og:site_name" content="V2rayNode节点分享站" />
+    <meta property="og:title" content="安装Docker、Harbor、Jenkins、Gitlab" />
+    <meta property="og:image" content="https://v2raynode.github.io/uploads/20240303/93e24701f017df541c51f42a31b872fa.webp" />
+        <meta property="og:release_date" content="2025-01-23T10:39:27" />
+    <meta property="og:updated_time" content="2025-01-23T10:39:27" />
+        <meta property="og:description" content="文章目录  系统平台信息 依赖   Docker     设置存储库   Docker-Compose   Go Java Maven Gitlab   安装 配置 启动 使用Gitlab   [Ne" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="安装Docker、Harbor、Jenkins、Gitlab">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- google-fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/v2raynode/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KDKFWTWW0S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KDKFWTWW0S');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke">
+                                <a class="navbar-brand d-flex align-items-center" href="/">
+                        V2ray Node</a>
+                                
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2" style="line-height: 3rem;word-break: break-all;">安装Docker、Harbor、Jenkins、Gitlab</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span><a href="/news/">新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- about section -->
+    <section class="video-section py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <div class="toc"> <h3>文章目录</h3> <ul> <li><a href="#_1" rel="nofollow">系统平台信息</a></li> <li><a href="#_17" rel="nofollow">依赖</a></li> <li> <ul> <li><a href="#Docker_18" rel="nofollow">Docker</a></li> <li> <ul> <li> <ul> <li><a href="#_31" rel="nofollow">设置存储库</a></li> </ul> </li> <li><a href="#DockerCompose_89" rel="nofollow">Docker-Compose</a></li> </ul> </li> <li><a href="#Go_104" rel="nofollow">Go</a></li> <li><a href="#Java_110" rel="nofollow">Java</a></li> <li><a href="#Maven_139" rel="nofollow">Maven</a></li> <li><a href="#Gitlab_182" rel="nofollow">Gitlab</a></li> <li> <ul> <li><a href="#_184" rel="nofollow">安装</a></li> <li><a href="#_195" rel="nofollow">配置</a></li> <li><a href="#_233" rel="nofollow">启动</a></li> <li><a href="#Gitlab_267" rel="nofollow">使用Gitlab</a></li> <li> <ul> <li><a href="#New_projectCreate_blank_project_288" rel="nofollow">[New project]-&gt;[Create blank project]</a></li> <li><a href="#Macssh_290" rel="nofollow">Mac配置ssh登录</a></li> </ul> </li> </ul> </li> <li><a href="#Jenkins_313" rel="nofollow">Jenkins</a></li> <li> <ul> <li><a href="#_315" rel="nofollow">安装</a></li> <li><a href="#_323" rel="nofollow">配置</a></li> <li><a href="#_354" rel="nofollow">修改镜像源</a></li> <li><a href="#_376" rel="nofollow">启动</a></li> <li><a href="#Jenkins_402" rel="nofollow">登录Jenkins</a></li> <li><a href="#_413" rel="nofollow">管理插件</a></li> <li><a href="#_428" rel="nofollow">全局配置</a></li> <li> <ul> <li><a href="#Manage_JenkinsGlobal_Tool_Configuration_431" rel="nofollow">[Manage Jenkins]-&gt;[Global Tool Configuration]</a></li> <li><a href="#Manage_JenkinsConfigure_SystemPublish_over_SSH_437" rel="nofollow">[Manage Jenkins]-&gt;[Configure System]-&gt;[Publish over SSH]</a></li> </ul> </li> <li><a href="#Jenkinsdocker_443" rel="nofollow">在Jenkins容器内使用docker</a></li> </ul> </li> <li><a href="#Harbor_507" rel="nofollow">Harbor</a></li> <li> <ul> <li><a href="#_509" rel="nofollow">下载</a></li> <li><a href="#_517" rel="nofollow">安装</a></li> <li><a href="#_600" rel="nofollow">拉取/推送镜像</a></li> </ul> </li> </ul> </li> </ul> </div> </h1> <p>OS: Linux Mint 20.3 Una</p> <p>Kernel Release: 5.13.0-35-generic</p> <p>Hardware Platform: x86_64</p> <p>CPU Model Name: Intel® Xeon® CPU E5-2680 v3 @ 2.50GHz</p> <p>CPU Cores: 48</p> <p>Main Memory: 125GB</p> <p>IP: 211.87.224.233</p> </h1> <h2> <a id="Docker_18" rel="nofollow"></a>Docker</h2> <p>version 20.10.14</p> <p>旧版本的 Docker</p> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> remove <span class="token function">docker</span> docker-engine docker.io containerd runc </code></pre> <h4> <a id="_31" rel="nofollow"></a>设置存储库</h4> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> update  <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token punctuation">\</span>     ca-certificates <span class="token punctuation">\</span>     <span class="token function">curl</span> <span class="token punctuation">\</span>     gnupg <span class="token punctuation">\</span>     lsb-release </code></pre> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> update </code></pre> <p>这里没有安装 docker-compose</p> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> docker-ce docker-ce-cli containerd.io </code></pre> <p>apt-cache madison docker-ce</p> <p>version = <code>5:20.10.16~3-0~ubuntu-focal</code></p> <pre><code>sudo apt-get install docker-ce=5:20.10.16~3-0~ubuntu-focal docker-ce-cli=5:20.10.16~3-0~ubuntu-focal containerd.io </code></pre> <pre><code>#1.配置阿里云的gpg curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -  #2.配置阿里云的docker镜像 sudo add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"  #3.执行安装命令 sudo apt-get install docker-ce docker-ce-cli containerd.io </code></pre> <h3> <a id="DockerCompose_89" rel="nofollow"></a>Docker-Compose</h3> <p>docker-compose version 1.29.2</p> <p>安装</p> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">curl</span> -L <span class="token string">"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -s<span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span>"</span> -o /usr/bin/docker-compose </code></pre> <p>加上可执行权限</p> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/bin/docker-compose </code></pre> <h2> <a id="Go_104" rel="nofollow"></a>Go</h2> <p>go version go1.17.7 linux/amd6</p> <h2> <a id="Java_110" rel="nofollow"></a>Java</h2> <p>openjdk version “1.8.0_312”</p> <p>path: /usr/lib/jvm/java-8-openjdk-amd64</p> <pre><code class="prism language-shell"><span class="token function">sudo</span> update-alternatives --config java </code></pre> <pre><code class="prism language-shell"><span class="token comment">#output</span> There are <span class="token number">3</span> choices <span class="token keyword">for</span> the alternative java <span class="token punctuation">(</span>providing /usr/bin/java<span class="token punctuation">)</span>.    Selection    Path                                            Priority   Status ------------------------------------------------------------ * <span class="token number">0</span>            /usr/lib/jvm/java-17-openjdk-amd64/bin/java      <span class="token number">1711</span>      auto mode   <span class="token number">1</span>            /usr/lib/jvm/java-11-openjdk-amd64/bin/java      <span class="token number">1111</span>      manual mode   <span class="token number">2</span>            /usr/lib/jvm/java-17-openjdk-amd64/bin/java      <span class="token number">1711</span>      manual mode   <span class="token number">3</span>            /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java   <span class="token number">1081</span>      manual mode  Press <span class="token operator">&lt;</span>enter<span class="token operator">&gt;</span> to keep the current choice<span class="token punctuation">[</span>*<span class="token punctuation">]</span>, or <span class="token builtin class-name">type</span> selection number: </code></pre> <p><code>java -version</code> 检查</p> <h2> <a id="Maven_139" rel="nofollow"></a>Maven</h2> <p>Apache Maven 3.8.5</p> <p>path: /opt/apache-maven-3.8.5</p> <ul> <li>jdk8编译插件配置</li> </ul> <pre><code class="prism language-xml">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>profile</span><span class="token punctuation">&gt;</span></span>             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">&gt;</span></span>jdk-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">&gt;</span></span>             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>activation</span><span class="token punctuation">&gt;</span></span>                 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>activeByDefault</span><span class="token punctuation">&gt;</span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>activeByDefault</span><span class="token punctuation">&gt;</span></span>                 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>jdk</span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>jdk</span><span class="token punctuation">&gt;</span></span>             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>activation</span><span class="token punctuation">&gt;</span></span>              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">&gt;</span></span>                 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.source</span><span class="token punctuation">&gt;</span></span>                 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.target</span><span class="token punctuation">&gt;</span></span>                 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven.compiler.compilerVersion</span><span class="token punctuation">&gt;</span></span>8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven.compiler.compilerVersion</span><span class="token punctuation">&gt;</span></span>             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>properties</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>profile</span><span class="token punctuation">&gt;</span></span> </code></pre> <ul> <li>maven仓库源</li> </ul> <pre><code class="prism language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mirror</span><span class="token punctuation">&gt;</span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">&gt;</span></span>alimaven<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">&gt;</span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>mirrorOf</span><span class="token punctuation">&gt;</span></span>central<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mirrorOf</span><span class="token punctuation">&gt;</span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>name</span><span class="token punctuation">&gt;</span></span>Aliyun maven<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>name</span><span class="token punctuation">&gt;</span></span>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">&gt;</span></span>https://maven.aliyun.com/repository/central<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mirror</span><span class="token punctuation">&gt;</span></span> </code></pre> <h2> <a id="Gitlab_182" rel="nofollow"></a>Gitlab</h2> <p>使用docker安装 Gitlab</p> <h3> <a id="_184" rel="nofollow"></a>安装</h3> <pre><code class="prism language-shell"><span class="token function">docker</span> search gitlab/ </code></pre> <pre><code class="prism language-shell"><span class="token function">docker</span> pull gitlab/gitlab-ce:latest </code></pre> <h3> <a id="_195" rel="nofollow"></a>配置</h3> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">mkdir</span> -p /srv/gitlab <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">echo</span> <span class="token string">"export GITLAB_HOME=/srv/gitlab"</span> <span class="token operator">&gt;&gt;</span> .profile <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">source</span> .profile </code></pre> <p>docker-compose.yml</p> <pre><code class="prism language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.6'</span> <span class="token key atrule">services</span><span class="token punctuation">:</span>    <span class="token key atrule">web</span><span class="token punctuation">:</span>      <span class="token key atrule">image</span><span class="token punctuation">:</span> <span class="token string">'gitlab/gitlab-ce:latest'</span>     <span class="token key atrule">container_name</span><span class="token punctuation">:</span> sdu<span class="token punctuation">-</span>weblab<span class="token punctuation">-</span>gitlab     <span class="token key atrule">restart</span><span class="token punctuation">:</span> always     <span class="token key atrule">hostname</span><span class="token punctuation">:</span> <span class="token string">'211.87.224.233'</span>     <span class="token key atrule">environment</span><span class="token punctuation">:</span>        <span class="token key atrule">GITLAB_OMNIBUS_CONFIG</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">         external_url 'http://211.87.224.233:8929'         gitlab_rails['gitlab_shell_ssh_port'] = 2224</span>     <span class="token key atrule">ports</span><span class="token punctuation">:</span>        <span class="token punctuation">-</span> <span class="token string">'8929:8929'</span>       <span class="token punctuation">-</span> <span class="token string">'2224:22'</span>     <span class="token key atrule">volumes</span><span class="token punctuation">:</span>        <span class="token punctuation">-</span> <span class="token string">'$GITLAB_HOME/config:/etc/gitlab'</span>       <span class="token punctuation">-</span> <span class="token string">'$GITLAB_HOME/logs:/var/log/gitlab'</span>       <span class="token punctuation">-</span> <span class="token string">'$GITLAB_HOME/data:/var/opt/gitlab'</span> </code></pre> <p>注意点:</p> <p>external_url中的端口需要和ports映射的容器端口保持一致;</p> <p>gitlab_rails[‘gitlab_shell_ssh_port’]要和宿主机端口保持一致。</p> <h3> <a id="_233" rel="nofollow"></a>启动</h3> <p>构建并启动</p> <pre><code class="prism language-shell"><span class="token function">docker-compose</span> -f ./docker-compose.yml up -d <span class="token comment"># 如果文件名为`docker-compose.yml`可以不指定-f</span> </code></pre> <p>强制重启</p> <pre><code class="prism language-shell"><span class="token function">docker-compose</span> up -d --force-recreate </code></pre> <p>重新构建并启动（反映yml的变化，一定是最新的）</p> <pre><code class="prism language-shell"><span class="token function">docker-compose</span> down <span class="token operator">&amp;&amp;</span> <span class="token function">docker-compose</span> up -d </code></pre> <p>注意：这个服务启动时间比较长，须等待一两分钟。</p> <p>检查是否成功运行：浏览器访问 http://211.87.224.233:8929 (这个8989是映射的宿主机port，当然你可以映射成其他端口)</p> <p>如果访问失败，注意云服务器的安全组或者firewall的端口开放情况（sudo ufw status）</p> <h3> <a id="Gitlab_267" rel="nofollow"></a>使用Gitlab</h3> <p>默认管理员账户：root</p> <p>查看配置文件得到密码</p> <pre><code class="prism language-shell"><span class="token comment"># 注意我们已经配置好数据卷映射了</span> <span class="token function">sudo</span> <span class="token function">cat</span> <span class="token variable">$GITLAB_HOME</span>/config/initial_root_password </code></pre> <p>可以再去修改一下密码（设置为： sduweblab）</p> <blockquote> <p>https://docs.gitlab.com/ee/install/docker.html</p> <p>https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/files/gitlab-config-template/gitlab.rb.template</p> </blockquote> <h4> <a id="New_projectCreate_blank_project_288" rel="nofollow"></a>[New project]-&gt;[Create blank project]</h4> <h4> <a id="Macssh_290" rel="nofollow"></a>Mac配置ssh登录</h4> <pre><code class="prism language-shell">jisongyang@SongyangJi-MacBookAir .ssh % <span class="token function">ssh</span> -p <span class="token number">2224</span> -T git@211.87.224.233 ssh: connect to <span class="token function">host</span> <span class="token number">211.87</span>.224.233 port <span class="token number">2224</span>: Connection refused </code></pre> <pre><code class="prism language-shell">jisongyang@SongyangJi-MacBookAir .ssh % <span class="token function">ssh</span> -T git@211.87.224.233 git@211.87.224.233's password: </code></pre> <h2> <a id="Jenkins_313" rel="nofollow"></a>Jenkins</h2> <h3> <a id="_315" rel="nofollow"></a>安装</h3> <p>jenkins: 2.346</p> <pre><code class="prism language-shell"><span class="token function">docker</span> pull jenkins/jenkins:latest </code></pre> <h3> <a id="_323" rel="nofollow"></a>配置</h3> <p>docker-compse yml</p> <pre><code class="prism language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.6'</span> <span class="token key atrule">services</span><span class="token punctuation">:</span>    <span class="token key atrule">jenkins</span><span class="token punctuation">:</span>      <span class="token key atrule">image</span><span class="token punctuation">:</span> jenkins/jenkins<span class="token punctuation">:</span>latest     <span class="token key atrule">container_name</span><span class="token punctuation">:</span> sdu<span class="token punctuation">-</span>weblab<span class="token punctuation">-</span>jenkins<span class="token punctuation">-</span>latest     <span class="token key atrule">restart</span><span class="token punctuation">:</span> always     <span class="token key atrule">ports</span><span class="token punctuation">:</span>        <span class="token punctuation">-</span> <span class="token string">"18080:8080"</span>       <span class="token punctuation">-</span> <span class="token string">"50000:50000"</span>     <span class="token key atrule">volumes</span><span class="token punctuation">:</span>        <span class="token punctuation">-</span> ./data<span class="token punctuation">:</span>/var/jenkins_home <span class="token comment"># jenkins:latest 的home目录，包括插件和配置等等</span>       <span class="token punctuation">-</span> <span class="token string">'$MAVEN_HOME:/opt/maven'</span>       <span class="token punctuation">-</span> <span class="token string">'$JAVA_HOME:/opt/java8'</span>       <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock       <span class="token punctuation">-</span> /usr/bin/docker<span class="token punctuation">:</span>/usr/bin/docker       <span class="token punctuation">-</span> /etc/docker/daemon.json<span class="token punctuation">:</span>/etc/docker/daemon.json </code></pre> <p>由于jenkins承担了打包的任务，因此将宿主机的jdk和maven挂载上去（另一种做法是自定义一个包含jdk和maven的jenkins镜像，有待尝试）。</p> <p>(其中有关docker的配置后面再解释)</p> <h3> <a id="_354" rel="nofollow"></a>修改镜像源</h3> <p>否则大概率下载插件会失败！</p> <pre><code class="prism language-shell"><span class="token function">vim</span> data/hudson.model.UpdateCenter.xml </code></pre> <pre><code class="prism language-xml"><span class="token prolog">&lt;?xml version='1.1' encoding='UTF-8'?&gt;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sites</span><span class="token punctuation">&gt;</span></span>   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>site</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">&gt;</span></span>default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">&gt;</span></span>     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">&gt;</span></span>https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>url</span><span class="token punctuation">&gt;</span></span>   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>site</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sites</span><span class="token punctuation">&gt;</span></span> </code></pre> <h3> <a id="_376" rel="nofollow"></a>启动</h3> <p>启动之后，查看日志发现写数据卷的时候权限不够。（有可能）</p> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">chmod</span> -R <span class="token number">777</span> data/ </code></pre> <p>给足data文件夹权限。(奇怪的是，docker-compose restart的时候还是要发现写权限不够)</p> <p>检查是否启动成功，访问 http://211.87.224.233:18080/</p> <p><strong>进入容器</strong></p> <pre><code class="prism language-shell"><span class="token function">docker</span> <span class="token builtin class-name">exec</span> -it sdu-weblab-jenkins <span class="token function">bash</span> </code></pre> <h3> <a id="Jenkins_402" rel="nofollow"></a>登录Jenkins</h3> <pre><code class="prism language-shell"><span class="token comment"># 查看管理员日志密码（查看文件 or 使用docker-compose logs -f 查看日志）</span> <span class="token function">cat</span> data/secrets/initialAdminPassword <span class="token comment"># 可能没有文件读权限</span> </code></pre> <p>admin: f991e76fb99b4e3993ccdb52a9eaa8f7</p> <h3> <a id="_413" rel="nofollow"></a>管理插件</h3> <p>入口：[Manage Jenkins]-&gt;[System Configuration]-&gt;[Manage Plugins]</p> <p><strong>必备插件</strong></p> <ul> <li>Git Parameter</li> <li>Publish Over SSH</li> <li>Gitlab</li> <li>Pipeline</li> </ul> <h3> <a id="_428" rel="nofollow"></a>全局配置</h3> <h4> <a id="Manage_JenkinsGlobal_Tool_Configuration_431" rel="nofollow"></a>[Manage Jenkins]-&gt;[Global Tool Configuration]</h4> <p>配置jdk和maven的home。<br /> 其中MAVEN_HOME配置为<code>/opt/maven</code>; JAVA_HOME配置为<code>/opt/java8</code>（不错这两个文件夹其实是从宿主机映射过来的，其真实路径分别为宿主机的<code>$MAVEN_HOME</code>、<code>JAVA_HOME</code>，也就是<code>/opt/apache-maven-3.8.5</code>、<code>/usr/lib/jvm/java-8-openjdk-amd64</code>）</p> <h4> <a id="Manage_JenkinsConfigure_SystemPublish_over_SSH_437" rel="nofollow"></a>[Manage Jenkins]-&gt;[Configure System]-&gt;[Publish over SSH]</h4> <p>配置远程发布的机器，这里为了方便就配置本机即可。（这里在配置auth校验的时候最好使用密码校验，配置的私钥话可能因为不合规导致失败）</p> <h3> <a id="Jenkinsdocker_443" rel="nofollow"></a>在Jenkins容器内使用docker</h3> <p>两种方案，一种是在Jenkins镜像里就有docker，另一种是使用宿主机的docker。</p> <p>这里我们采取后者。</p> <blockquote> <p>参考 https://www.dockone.io/article/431</p> </blockquote> <p>这里只讲操作不讲原因和原理。</p> <p>第一步修改权限：</p> <pre><code class="prism language-shell"><span class="token builtin class-name">cd</span> /var/run <span class="token function">sudo</span> <span class="token function">chown</span> root:root docker.sock <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">chmod</span> o+rw docker.sock </code></pre> <p>第二步修改jenkins的docker-compose.yml</p> <pre><code class="prism language-yaml"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.6'</span> <span class="token key atrule">services</span><span class="token punctuation">:</span>    <span class="token key atrule">jenkins</span><span class="token punctuation">:</span>      <span class="token key atrule">image</span><span class="token punctuation">:</span> jenkins/jenkins<span class="token punctuation">:</span>latest     <span class="token key atrule">container_name</span><span class="token punctuation">:</span> sdu<span class="token punctuation">-</span>weblab<span class="token punctuation">-</span>jenkins<span class="token punctuation">-</span>latest     <span class="token key atrule">restart</span><span class="token punctuation">:</span> always     <span class="token key atrule">ports</span><span class="token punctuation">:</span>        <span class="token punctuation">-</span> <span class="token string">"18080:8080"</span>       <span class="token punctuation">-</span> <span class="token string">"50000:50000"</span>     <span class="token key atrule">volumes</span><span class="token punctuation">:</span>        <span class="token punctuation">-</span> ./data<span class="token punctuation">:</span>/var/jenkins_home <span class="token comment"># jenkins:latest 的home目录，包括插件和配置等等</span>       <span class="token punctuation">-</span> <span class="token string">'$MAVEN_HOME:/opt/maven'</span>       <span class="token punctuation">-</span> <span class="token string">'$JAVA_HOME:/opt/java8'</span>       <span class="token punctuation">-</span> /var/run/docker.sock<span class="token punctuation">:</span>/var/run/docker.sock       <span class="token punctuation">-</span> /usr/bin/docker<span class="token punctuation">:</span>/usr/bin/docker       <span class="token punctuation">-</span> /etc/docker/daemon.json<span class="token punctuation">:</span>/etc/docker/daemon.json </code></pre> <p>重点就是挂载宿主机三个文件即可，至于这里为什么mount这三个就足够了，不做解释。</p> <p>记住重启一下</p> <pre><code>docker-compose up -d </code></pre> <p>检查：</p> <pre><code class="prism language-shell">jsy@wzai:~$ <span class="token function">docker</span> <span class="token builtin class-name">exec</span> -it a6d580bfb4e1 <span class="token function">bash</span> jenkins@a6d580bfb4e1:/$ jenkins@a6d580bfb4e1:/$ jenkins@a6d580bfb4e1:/$ <span class="token function">docker</span> version </code></pre> <h2> <a id="Harbor_507" rel="nofollow"></a>Harbor</h2> <h3> <a id="_509" rel="nofollow"></a>下载</h3> <pre><code class="prism language-shell"><span class="token function">wget</span> https://github.com/goharbor/harbor/releases/download/v2.5.0/harbor-offline-installer-v2.5.0.tgz </code></pre> <h3> <a id="_517" rel="nofollow"></a>安装</h3> <p><strong>解压</strong></p> <pre><code class="prism language-shell"><span class="token function">tar</span> -xzvf harbor-offline-installer-v2.5.0.tgz -C ./ </code></pre> <p>解压结果</p> <pre><code class="prism language-shell">jsy@wzai:~/devops$ <span class="token function">ls</span> harbor/ common.sh  harbor.v2.5.0.tar.gz  harbor.yml.tmpl  install.sh  LICENSE  prepare </code></pre> <p><strong>编辑配置文件</strong></p> <pre><code class="prism language-shell"><span class="token function">cp</span> harbor.yml.tmpl harbor.yml </code></pre> <p>修改hostname为主机ip，将htts相关内容注释掉（暂时不需要使用到https）、修改admin密码、修改http端口号。</p> <pre><code>hostname: 211.87.224.233  http:   # port for http, default is 80. If https enabled, this port will redirect to https port   port: 8930    harbor_admin_password: admin </code></pre> <p>安装：</p> <pre><code class="prism language-shell">./prepare <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> ./install.sh </code></pre> <p>install过程分为这么几步：</p> <pre><code>[Step 0]: checking if docker is installed ... [Step 1]: checking docker-compose is installed ... [Step 2]: loading Harbor images ... [Step 3]: preparing environment ... [Step 4]: preparing harbor configs ... </code></pre> <p>安装完毕后检查一下：</p> <pre><code class="prism language-shell">jsy@wzai:~/devops/harbor$ <span class="token function">sudo</span> <span class="token function">docker-compose</span> <span class="token function">ps</span>       Name                    Command                 State                  Ports ---------------------------------------------------------------------------------------------- harbor-core         /harbor/entrypoint.sh          Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span> harbor-db           /docker-entrypoint.sh <span class="token number">96</span> <span class="token number">13</span>    Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span> harbor-jobservice   /harbor/entrypoint.sh          Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span> harbor-log          /bin/sh -c /usr/local/bin/     Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">127.0</span>.0.1:1514-<span class="token operator">&gt;</span><span class="token number">10514</span>/tcp                     <span class="token punctuation">..</span>. harbor-portal       nginx -g daemon off<span class="token punctuation">;</span>           Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span> nginx               nginx -g daemon off<span class="token punctuation">;</span>           Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span>   <span class="token number">0.0</span>.0.0:8930-<span class="token operator">&gt;</span><span class="token number">8080</span>/tcp,:::89                                                                   <span class="token number">30</span>-<span class="token operator">&gt;</span><span class="token number">8080</span>/tcp redis               redis-server /etc/redis.conf   Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span> registry            /home/harbor/entrypoint.sh     Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span> registryctl         /home/harbor/start.sh          Up <span class="token punctuation">(</span>healthy<span class="token punctuation">)</span> </code></pre> <p>浏览器访问检查</p> <h3> <a id="_600" rel="nofollow"></a>拉取/推送镜像</h3> <p>下一步使用docker login到私服，需要将私服的htp地址配置到docker的不安全register中；</p> <pre><code class="prism language-shell"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/docker/daemon.json </code></pre> <p>写入</p> <pre><code class="prism language-json"><span class="token punctuation">{<!-- --></span>   <span class="token string-property property">"insecure-registries"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"211.87.224.233:8930"</span><span class="token punctuation">]</span> <span class="token punctuation">}</span> </code></pre> <p>必须重启docker服务</p> <pre><code class="prism language-shell"><span class="token function">sudo</span> systemctl restart <span class="token function">docker</span> </code></pre> <p>镜像名称要求：私服地址/项目名/镜像名:版本</p> <pre><code class="prism language-shell"><span class="token comment"># docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span> <span class="token function">docker</span> tag IMAGE_ID 私服地址/项目名/镜像名:版本 </code></pre> <p><strong>举例</strong></p> <pre><code class="prism language-shell"><span class="token function">docker</span> tag hello-world <span class="token variable">$HARBOR_URL</span>/sdu-weblab/hello-world <span class="token comment"># 配置一下HARBOR_URL环境变量</span> </code></pre> <p>检查一下</p> <pre><code class="prism language-shell"><span class="token operator">&gt;</span> <span class="token function">docker</span> images  <span class="token comment"># 211.87.224.233:8930/sdu-weblab/hello-world   latest             feb5d9fea6a5   7 months ago   13.3kB</span> </code></pre> <pre><code class="prism language-shell"><span class="token comment"># 先登录后推送</span> <span class="token function">docker</span> login -u admin -p admin <span class="token variable">$HARBOR_URL</span> <span class="token function">docker</span> push <span class="token number">211.87</span>.224.233:8930/sdu-weblab/hello-world </code></pre> <p>推送成功</p> <pre><code class="prism language-shell">jsy@wzai:~$ <span class="token function">docker</span> push <span class="token number">211.87</span>.224.233:8930/sdu-weblab/hello-world Using default tag: latest The push refers to repository <span class="token punctuation">[</span><span class="token number">211.87</span>.224.233:8930/sdu-weblab/hello-world<span class="token punctuation">]</span> e07ee1baac5f: Pushed latest: digest: sha256:f54a58bc1aac5ea1a25d796ae155dc228b3f0e11d046ae276b39c4bf2f13d8c4 size: <span class="token number">525</span> </code></pre> <p>拉取镜像也是一样的。</p> <pre><code class="prism language-shell"><span class="token comment"># 先删除本地的</span> <span class="token function">docker</span> image <span class="token function">rm</span> <span class="token number">211.87</span>.224.233:8930/sdu-weblab/hello-world <span class="token comment"># 直接粘贴浏览器的命令</span> <span class="token function">docker</span> pull <span class="token number">211.87</span>.224.233:8930/sdu-weblab/hello-world@sha256:f54a58bc1aac5ea1a25d796ae155dc228b3f0e11d046ae276b39c4bf2f13d8c4 </code></pre> <blockquote> <p>https://github.com/jenkinsci/docker/blob/master/README.md</p> </blockquote></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-44289.htm">宠物粮食生意怎么样啊赚钱吗 宠物粮食生意怎么样啊赚钱吗知乎</a></p>
+                                        <p>下一个：<a href="/news/article-44780.htm">梦到抱别的女人什么意思周公解梦梦见蛇（梦见抱别人女人是什么）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-35861.htm" title="一文弄懂Spring Boot应用分层构建Docker Image镜像">一文弄懂Spring Boot应用分层构建Docker Image镜像</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-30-clash-v2ray-ss-ssr.htm" title="10月30日|18.5M/S，最新高速免费节点，Clash/Shadowrocket/V2ray/SSR订阅链接地址，科学上网">10月30日|18.5M/S，最新高速免费节点，Clash/Shadowrocket/V2ray/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-22748.htm" title="动物疫苗的保存方法（动物疫苗能放冰箱吗）">动物疫苗的保存方法（动物疫苗能放冰箱吗）</a></li>
+                        <li class="py-2"><a href="/news/article-39325.htm" title="天津哪能领养狗狗（天津哪里可以领养宠物狗）">天津哪能领养狗狗（天津哪里可以领养宠物狗）</a></li>
+                        <li class="py-2"><a href="/news/article-34008.htm" title="宠物店的粮适合买吗知乎推荐（宠物店卖的狗粮哪些牌子）">宠物店的粮适合买吗知乎推荐（宠物店卖的狗粮哪些牌子）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-clash-node.htm" title="10月17日|20M/S，最新高速免费节点，V2ray/Clash/Shadowrocket/SSR订阅链接地址，科学上网">10月17日|20M/S，最新高速免费节点，V2ray/Clash/Shadowrocket/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-clash-subscribe.htm" title="10月9日|20.9M/S，最新高速免费节点，Clash/V2ray/SSR/Shadowrocket订阅链接地址，科学上网">10月9日|20.9M/S，最新高速免费节点，Clash/V2ray/SSR/Shadowrocket订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-36874.htm" title="Springboot之请求映射">Springboot之请求映射</a></li>
+                        <li class="py-2"><a href="/news/article-24600.htm" title="上海宠物狗免费领养地址（上海宠物领养中心免费领养狗狗）">上海宠物狗免费领养地址（上海宠物领养中心免费领养狗狗）</a></li>
+                        <li class="py-2"><a href="/news/article-42793.htm" title="动物疫苗监管部门是哪里的部门（动物疫苗管理制度）">动物疫苗监管部门是哪里的部门（动物疫苗管理制度）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>V2rayNode节点分享站 版权所有</p>
+                    <p>Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/v2raynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- banner slider -->
+    <script src="/assets/website/js/frontend/v2raynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: false
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //banner slider -->
+    <!-- counter for stats -->
+    <script src="/assets/website/js/frontend/v2raynode/counter.js"></script>
+    <!-- //counter for stats -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/v2raynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/v2raynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
