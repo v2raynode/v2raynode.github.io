@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raynode.github.io/news/article-24599.htm" />
@@ -9,7 +9,35 @@
     <title>Token验证JWT方法</title>
     <link rel="icon" href="/assets/website/img/v2raynode/favicon.ico" type="image/x-icon"/>
         <meta name="description" content="使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。大概的流程是这样的：   客户端使用用户名跟密码请求登录 服务端收到请求，去验证用户名与密码 验证成功后，服务端会签发一个 To" />
-        <!-- google-fonts -->
+    
+    <meta name="author" content="V2rayNode节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raynode.github.io/news/article-24599.htm" />
+    <meta property="og:site_name" content="V2rayNode节点分享站" />
+    <meta property="og:title" content="Token验证JWT方法" />
+    <meta property="og:image" content="https://v2raynode.github.io/uploads/20240303/62ea819da249aa71125f70ab46ff4a83.webp" />
+        <meta property="og:release_date" content="2024-12-12T10:06:08" />
+    <meta property="og:updated_time" content="2024-12-12T10:06:08" />
+        <meta property="og:description" content="使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。大概的流程是这样的：   客户端使用用户名跟密码请求登录 服务端收到请求，去验证用户名与密码 验证成功后，服务端会签发一个 To" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Token验证JWT方法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- google-fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- //google-fonts -->
     <!-- Template CSS Style link -->
@@ -114,16 +142,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-8-26-node-share.htm" title="8月26日|19.6M/S，最新高速免费节点，SSR/Clash/V2ray/Shadowrocket订阅链接地址，科学上网">8月26日|19.6M/S，最新高速免费节点，SSR/Clash/V2ray/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-3-27-free-clash.htm" title="3月27日|22.4M/S，最新高速免费节点，Shadowrocket/V2ray/Clash/SSR订阅链接">3月27日|22.4M/S，最新高速免费节点，Shadowrocket/V2ray/Clash/SSR订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-4-free-ssr-node.htm" title="9月4日|22.2M/S，最新高速免费节点，V2ray/Clash/SSR/Shadowrocket订阅链接地址，科学上网">9月4日|22.2M/S，最新高速免费节点，V2ray/Clash/SSR/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/news/article-24599.htm" title="Token验证JWT方法">Token验证JWT方法</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-19-clash-windows.htm" title="9月19日|20.2M/S，最新高速免费节点，V2ray/SSR/Shadowrocket/Clash订阅链接地址，科学上网">9月19日|20.2M/S，最新高速免费节点，V2ray/SSR/Shadowrocket/Clash订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-10-free-v2ray-subscribe.htm" title="10月10日|18.9M/S，最新高速免费节点，Shadowrocket/SSR/Clash/V2ray订阅链接地址，科学上网">10月10日|18.9M/S，最新高速免费节点，Shadowrocket/SSR/Clash/V2ray订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-20-free-v2ray-subscribe.htm" title="10月20日|23M/S，最新高速免费节点，Clash/V2ray/SSR/Shadowrocket订阅链接地址，科学上网">10月20日|23M/S，最新高速免费节点，Clash/V2ray/SSR/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-4-free-node-subscribe.htm" title="10月4日|21.8M/S，最新高速免费节点，Shadowrocket/Clash/SSR/V2ray订阅链接地址，科学上网">10月4日|21.8M/S，最新高速免费节点，Shadowrocket/Clash/SSR/V2ray订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-ssr-subscribe.htm" title="11月16日|22M/S，最新高速免费节点，Clash/SSR/Shadowrocket/V2ray订阅链接地址，科学上网">11月16日|22M/S，最新高速免费节点，Clash/SSR/Shadowrocket/V2ray订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-18-free-v2ray-subscribe.htm" title="7月18日|22.6M/S，最新高速免费节点，Shadowrocket/V2ray/Clash/SSR订阅链接地址">7月18日|22.6M/S，最新高速免费节点，Shadowrocket/V2ray/Clash/SSR订阅链接地址</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-free-v2ray.htm" title="11月5日|22.7M/S，最新高速免费节点，V2ray/Shadowrocket/Clash/SSR订阅链接地址，科学上网">11月5日|22.7M/S，最新高速免费节点，V2ray/Shadowrocket/Clash/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-34911.htm" title="动物疫苗接种间隔多长时间 动物疫苗接种间隔多长时间打一次">动物疫苗接种间隔多长时间 动物疫苗接种间隔多长时间打一次</a></li>
+                        <li class="py-2"><a href="/news/article-30083.htm" title="动物疫病预防中心是干什么的（动物疾病防疫中心）">动物疫病预防中心是干什么的（动物疾病防疫中心）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-free-high-speed-nodes.htm" title="12月11日|21.9M/S，最新高速免费节点，V2ray/Clash/Shadowrocket/SSR订阅链接地址，科学上网">12月11日|21.9M/S，最新高速免费节点，V2ray/Clash/Shadowrocket/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-clash-windows.htm" title="12月15日|20.4M/S，最新高速免费节点，SSR/V2ray/Clash/Shadowrocket订阅链接地址，科学上网">12月15日|20.4M/S，最新高速免费节点，SSR/V2ray/Clash/Shadowrocket订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-34477.htm" title="孕妇被猫抓伤出了一点血有危险么（孕妇被猫抓了出血对宝宝有什么影响）">孕妇被猫抓伤出了一点血有危险么（孕妇被猫抓了出血对宝宝有什么影响）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-clash.htm" title="1月7日|21.7M/S，最新高速免费节点，SSR/Shadowrocket/Clash/V2ray订阅链接地址，科学上网">1月7日|21.7M/S，最新高速免费节点，SSR/Shadowrocket/Clash/V2ray订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-18-clash-windows.htm" title="1月18日|21M/S，最新高速免费节点，Clash/Shadowrocket/V2ray/SSR订阅链接地址，科学上网">1月18日|21M/S，最新高速免费节点，Clash/Shadowrocket/V2ray/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-22747.htm" title="动物疫苗注射方法及部位 动物疫苗注射方法及部位图片">动物疫苗注射方法及部位 动物疫苗注射方法及部位图片</a></li>
+                        <li class="py-2"><a href="/news/article-34476.htm" title="宠物商店进货渠道是什么（宠物店的宠物用品从哪进货）">宠物商店进货渠道是什么（宠物店的宠物用品从哪进货）</a></li>
                     </ul>
     </div>
 </div>
@@ -135,37 +163,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-06/" title="2024-06 归档">2024-06</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-05/" title="2024-05 归档">2024-05</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-04/" title="2024-04 归档">2024-04</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2024-03/" title="2024-03 归档">2024-03</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

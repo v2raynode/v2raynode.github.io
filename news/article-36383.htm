@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://v2raynode.github.io/news/article-36383.htm" />
@@ -9,7 +9,35 @@
     <title>Gin连接mysql</title>
     <link rel="icon" href="/assets/website/img/v2raynode/favicon.ico" type="image/x-icon"/>
         <meta name="description" content="Open函数只是校验参数格式是否正确,不参与数据库连接 db对象可安全的被 goroutine并发使用 , 并维护自己的空闲连接池, 因此Open函数应该只被调用一次, 很少需要关闭db对象  设置数" />
-        <!-- google-fonts -->
+    
+    <meta name="author" content="V2rayNode节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raynode.github.io/news/article-36383.htm" />
+    <meta property="og:site_name" content="V2rayNode节点分享站" />
+    <meta property="og:title" content="Gin连接mysql" />
+    <meta property="og:image" content="https://v2raynode.github.io/uploads/20240303/4fa90c33aa10990a5709868f292ce26d.webp" />
+        <meta property="og:release_date" content="2025-01-06T09:49:06" />
+    <meta property="og:updated_time" content="2025-01-06T09:49:06" />
+        <meta property="og:description" content="Open函数只是校验参数格式是否正确,不参与数据库连接 db对象可安全的被 goroutine并发使用 , 并维护自己的空闲连接池, 因此Open函数应该只被调用一次, 很少需要关闭db对象  设置数" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Gin连接mysql">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- google-fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- //google-fonts -->
     <!-- Template CSS Style link -->
@@ -114,16 +142,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-subscribe-node.htm" title="10月18日|20.1M/S，最新高速免费节点，SSR/Clash/V2ray/Shadowrocket订阅链接地址，科学上网">10月18日|20.1M/S，最新高速免费节点，SSR/Clash/V2ray/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-15-free-v2ray.htm" title="11月15日|19.7M/S，最新高速免费节点，V2ray/SSR/Clash/Shadowrocket订阅链接地址，科学上网">11月15日|19.7M/S，最新高速免费节点，V2ray/SSR/Clash/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-8-clash-node-daily-updates.htm" title="10月8日|20.4M/S，最新高速免费节点，Shadowrocket/SSR/Clash/V2ray订阅链接地址，科学上网">10月8日|20.4M/S，最新高速免费节点，Shadowrocket/SSR/Clash/V2ray订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/news/article-20916.htm" title="合肥宠物寄养中心（合肥宠物寄养中心在哪里）">合肥宠物寄养中心（合肥宠物寄养中心在哪里）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-25-free-v2ray.htm" title="10月25日|18.8M/S，最新高速免费节点，V2ray/Clash/Shadowrocket/SSR订阅链接地址，科学上网">10月25日|18.8M/S，最新高速免费节点，V2ray/Clash/Shadowrocket/SSR订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/news/article-20458.htm" title="动物接种疫苗多少钱一次打的 动物接种疫苗多少钱一次打的啊">动物接种疫苗多少钱一次打的 动物接种疫苗多少钱一次打的啊</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-15-free-node-subscribe-links.htm" title="10月15日|21.4M/S，最新高速免费节点，Clash/SSR/V2ray/Shadowrocket订阅链接地址，科学上网">10月15日|21.4M/S，最新高速免费节点，Clash/SSR/V2ray/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-ssr-subscribe.htm" title="11月16日|22M/S，最新高速免费节点，Clash/SSR/Shadowrocket/V2ray订阅链接地址，科学上网">11月16日|22M/S，最新高速免费节点，Clash/SSR/Shadowrocket/V2ray订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-1-shadowrocket-node.htm" title="1月1日|22.7M/S，最新高速免费节点，V2ray/SSR/Clash/Shadowrocket订阅链接地址，科学上网">1月1日|22.7M/S，最新高速免费节点，V2ray/SSR/Clash/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/news/article-20915.htm" title="猫味道很大房屋内怎么去除（房间猫咪异味怎样彻底清除）">猫味道很大房屋内怎么去除（房间猫咪异味怎样彻底清除）</a></li>
+                        <li class="py-2"><a href="/news/article-43792.htm" title="自家猫咪抓了一点点血要***吗（自己家猫抓破出点血用***吗）">自家猫咪抓了一点点血要***吗（自己家猫抓破出点血用***吗）</a></li>
+                        <li class="py-2"><a href="/news/article-31125.htm" title="动物接种疫苗多少次可以免疫新冠（动物接种疫苗后多久产生抗体?）">动物接种疫苗多少次可以免疫新冠（动物接种疫苗后多久产生抗体?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-ssr-node.htm" title="1月12日|21.6M/S，最新高速免费节点，V2ray/Clash/Shadowrocket/SSR订阅链接地址，科学上网">1月12日|21.6M/S，最新高速免费节点，V2ray/Clash/Shadowrocket/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-free-clash-subscribe.htm" title="1月31日|19.1M/S，最新高速免费节点，Shadowrocket/SSR/Clash/V2ray订阅链接地址，科学上网">1月31日|19.1M/S，最新高速免费节点，Shadowrocket/SSR/Clash/V2ray订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-node-share.htm" title="11月28日|20M/S，最新高速免费节点，Clash/V2ray/SSR/Shadowrocket订阅链接地址，科学上网">11月28日|20M/S，最新高速免费节点，Clash/V2ray/SSR/Shadowrocket订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-free-clash-subscribe.htm" title="12月5日|21.9M/S，最新高速免费节点，SSR/V2ray/Clash/Shadowrocket订阅链接地址，科学上网">12月5日|21.9M/S，最新高速免费节点，SSR/V2ray/Clash/Shadowrocket订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-26926.htm" title="小型颗粒饲料机多少钱一台 小型颗粒饲料机多少钱一台最便宜">小型颗粒饲料机多少钱一台 小型颗粒饲料机多少钱一台最便宜</a></li>
+                        <li class="py-2"><a href="/news/article-28312.htm" title="开宠物店需要具备哪些技能（开宠物店需要具备哪些技能和能力）">开宠物店需要具备哪些技能（开宠物店需要具备哪些技能和能力）</a></li>
+                        <li class="py-2"><a href="/news/article-40316.htm" title="动物疫苗价格表图片大全大图最新 动物疫苗价格表图片大全大图最新版">动物疫苗价格表图片大全大图最新 动物疫苗价格表图片大全大图最新版</a></li>
+                        <li class="py-2"><a href="/news/article-35385.htm" title="宠物粮食品牌前十名排行榜有哪些呢（宠物粮生产厂家排名）">宠物粮食品牌前十名排行榜有哪些呢（宠物粮生产厂家排名）</a></li>
                     </ul>
     </div>
 </div>
@@ -135,16 +163,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
