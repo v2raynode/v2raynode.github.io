@@ -1,0 +1,356 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raynode.github.io/news/article-66840.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Redis 缓存的三大问题及其解决方案</title>
+    <link rel="icon" href="/assets/website/img/v2raynode/favicon.ico" type="image/x-icon"/>
+        <meta name="description" content="一、缓存穿透 缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求，如发起 id 为-1 的数据或者特别大的不存在的数据。有可能是黑客利用漏洞攻击从而去压垮应用的数据库。 1. 常见解决方案 对" />
+    
+    <meta name="author" content="V2rayNode节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raynode.github.io/news/article-66840.htm" />
+    <meta property="og:site_name" content="V2rayNode节点分享站" />
+    <meta property="og:title" content="Redis 缓存的三大问题及其解决方案" />
+    <meta property="og:image" content="https://v2raynode.github.io/uploads/20240303/93e24701f017df541c51f42a31b872fa.webp" />
+        <meta property="og:release_date" content="2025-03-04T10:13:08" />
+    <meta property="og:updated_time" content="2025-03-04T10:13:08" />
+        <meta property="og:description" content="一、缓存穿透 缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求，如发起 id 为-1 的数据或者特别大的不存在的数据。有可能是黑客利用漏洞攻击从而去压垮应用的数据库。 1. 常见解决方案 对" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Redis 缓存的三大问题及其解决方案">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- google-fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/v2raynode/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KDKFWTWW0S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KDKFWTWW0S');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke">
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                                    <span>V2ray Node</span>
+                                </a>
+
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2" style="line-height: 3rem;word-break: break-all;">Redis 缓存的三大问题及其解决方案</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span><a href="/news/">新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- about section -->
+    <section class="video-section py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h2>一、缓存穿透</h2> <p>缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求，如发起 id 为-1 的数据或者特别大的不存在的数据。有可能是黑客利用漏洞攻击从而去压垮应用的数据库。</p> <h3>1. 常见解决方案</h3> <p>对于缓存穿透问题，常见的解决方案有以下三种：</p> <ul> <li> <p>验证拦截：接口层进行校验，如鉴定用户权限，对 ID 之类的字段做基础的校验，如 id&lt;=0 的字段直接拦截；</p> </li> <li> <p>缓存空数据：当数据库查询到的数据为空时，也将这条数据进行缓存，但缓存的有效性设置得要较短，以免影响正常数据的缓存；</p> <p>Copypublic Student getStudentsByID(Long id) {<!-- --></p> <pre><code>// 从Redis中获取学生信息 Student student = redisTemplate.opsForValue()     .get(String.valueOf(id)); if (student != null) {     return student; }  // 从数据库查询学生信息，并存入Redis student = studentDao.selectByStudentId(id); if (student != null) {     redisTemplate.opsForValue()         .set(String.valueOf(id), student, 60, TimeUnit.MINUTES); } else {     // 即使不存在，也将其存入缓存中     redisTemplate.opsForValue()         .set(String.valueOf(id), null, 60, TimeUnit.SECONDS); }  return student; 复制代码</code></pre> <p>}</p> </li> <li> <p>使用布隆过滤器：布隆过滤器是一种比较独特数据结构，有一定的误差。当它指定一个数据存在时，它不一定存在，但是当它指定一个数据不存在时，那么它一定是不存在的。</p> </li> </ul> <h3>2. 布隆过滤器</h3> <p>布隆过滤器是一种比较特殊的数据结构，有点类似与 HashMap，在业务中我们可能会通过使用 HashMap 来判断一个值是否存在，它可以在 O(1)时间复杂度内返回结果，效率极高，但是受限于存储容量，如果可能需要去判断的值超过亿级别，那么 HashMap 所占的内存就很可观了。</p> <p>而 BloomFilter 解决这个问题的方案很简单。首先用多个 bit 位去代替 HashMap 中的数组，这样的话储存空间就下来了，之后就是对 Key 进行多次哈希，将 Key 哈希后的值所对应的 bit 位置为 1。</p> <p>当判断一个元素是否存在时，就去判断这个值哈希出来的比特位是否都为 1，如果都为 1，那么可能存在，也可能不存在（如下图 F）。但是如果有一个 bit 位不为 1，那么这个 Key 就肯定不存在。</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads/20230223/217d66485f35ea50dd73dcc730b47d4b.jpg"></p> <p>注意：BloomFilter 并不支持删除操作，只支持添加操作。这一点很容易理解，因为你如果要删除数据，就得将对应的 bit 位置为 0，但是你这个 Key 对应的 bit 位可能其他的 Key 也对应着。</p> <h3>3. 缓存空数据与布隆过滤器的比较</h3> <p>上面对这两种方案都进行了简单的介绍，缓存空数据与布隆过滤器都能有效解决缓存穿透问题，但使用场景有着些许不同；</p> <ul> <li> <p>当一些恶意攻击查询查询的 key 各不相同，而且数量巨多，此时缓存空数据不是一个好的解决方案。因为它需要存储所有的 Key，内存空间占用高。并且在这种情况下，很多 key 可能只用一次，所以存储下来没有意义。所以对于这种情况而言，使用布隆过滤器是个不错的选择；</p> </li> <li> <p>而对与空数据的 Key 数量有限、Key 重复请求效率较高的场景而言，可以选择缓存空数据的方案。</p> </li> </ul> <h2>二、缓存击穿</h2> <p>缓存击穿是指当前热点数据存储到期时，多个线程同时并发访问热点数据。因为缓存刚过期，所有并发请求都会到数据库中查询数据。</p> <h3>解决方案</h3> <ul> <li> <p>将热点数据设置为永不过期；</p> </li> <li> <p>加互斥锁：互斥锁可以控制查询数据库的线程访问，但这种方案会导致系统的吞吐量下降，需要根据实际情况使用。</p> <p>Copypublic String get(key) { String value = redis.get(key); if (value == null) { // 代表缓存值过期 // 设置3min的超时，防止del操作失败的时候，下次缓存过期一直不能load db if (redis.setnx(key_mutex, 1, 3 * 60) == 1) { // 代表设置成功 value = db.get(key); redis.set(key, value, expire_secs); redis.del(key_mutex); } else { // 这个时候代表同时候的其他线程已经load db并回设到缓存了，这时候重试获取缓存值即可 sleep(50); get(key); // 重试 } } else { return value; } }</p> </li> </ul> <h2>三、缓存雪崩</h2> <p>缓存雪崩发生有几种情况，比如大量缓存集中在或者缓存同时在大范围中失效，出现了大量请求去访问数据库，从而导致 CPU 和内存过载，甚至停机。</p> <p>一个简单的雪崩过程：</p> <ol> <li> <p>Redis 集群产生了大面积故障；</p> </li> <li> <p>缓存失败，此时仍有大量请求去访问 Redis 缓存服务器；</p> </li> <li> <p>在大量 Redis 请求失败后，这些请求将会去访问数据库；</p> </li> <li> <p>由于应用的设计依赖于数据库和 Redis 服务，很快就会造成服务器集群的雪崩，最终导致整个系统的瘫痪。</p> </li> </ol> <h3>解决方案</h3> <ul> <li> <p>【事前】高可用缓存：高可用缓存是防止出现整个缓存故障。即使个别节点，机器甚至机房都关闭，系统仍然可以提供服务，Redis 哨兵(Sentinel) 和 Redis 集群(Cluster) 都可以做到高可用；</p> </li> <li> <p>【事中】缓存降级（临时支持）：当访问次数急剧增加导致服务出现问题时，我们如何确保服务仍然可用。在国内使用比较多的是 Hystrix，它通过熔断、降级、限流三个手段来降低雪崩发生后的损失。只要确保数据库不死，系统总可以响应请求，每年的春节 12306 我们不都是这么过来的吗？只要还可以响应起码还有抢到票的机会；</p> </li> <li> <p>【事后】Redis 备份和快速预热：Redis 数据备份和恢复、快速缓存预热。</p> </li> </ul> <p> 作者：xcbeyond<br /> 链接：https://juejin.cn/post/6971597474498609183<br /> 来源：掘金<br /> 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-66206.htm">【宠物免费领养】-合肥58同城（合肥免费领养猫咪）</a></p>
+                                        <p>下一个：<a href="/news/article-66841.htm">广州领养狗狗的平台（广州领养狗狗的平台叫什么）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-free-ssr-node.htm" title="2月1日|20.6M/S，最新高速免费节点，SSR/Clash/Shadowrocket/V2ray订阅链接地址，科学上网">2月1日|20.6M/S，最新高速免费节点，SSR/Clash/Shadowrocket/V2ray订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-37372.htm" title="1970年农历四月二十七是几号呢怎么读（1970年农历4月24日是什么星座）">1970年农历四月二十七是几号呢怎么读（1970年农历4月24日是什么星座）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-clash-v2ray-ss-ssr.htm" title="1月8日|21.4M/S，最新高速免费节点，V2ray/SSR/Shadowrocket/Clash订阅链接地址，科学上网">1月8日|21.4M/S，最新高速免费节点，V2ray/SSR/Shadowrocket/Clash订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-11-free-node-subscribe-links.htm" title="2月11日|22.5M/S，最新高速免费节点，SSR/Shadowrocket/V2ray/Clash订阅链接地址，科学上网">2月11日|22.5M/S，最新高速免费节点，SSR/Shadowrocket/V2ray/Clash订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-free-high-speed-nodes.htm" title="1月22日|21M/S，最新高速免费节点，Clash/V2ray/Shadowrocket/SSR订阅链接地址，科学上网">1月22日|21M/S，最新高速免费节点，Clash/V2ray/Shadowrocket/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-43287.htm" title="免费领养宠物交易平台官网下载的简单介绍">免费领养宠物交易平台官网下载的简单介绍</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-free-clash.htm" title="1月7日|21.7M/S，最新高速免费节点，SSR/Shadowrocket/Clash/V2ray订阅链接地址，科学上网">1月7日|21.7M/S，最新高速免费节点，SSR/Shadowrocket/Clash/V2ray订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-41313.htm" title="上海宠物医院收费价目表查询官网（上海宠物医院价格表）">上海宠物医院收费价目表查询官网（上海宠物医院价格表）</a></li>
+                        <li class="py-2"><a href="/news/article-37848.htm" title="东北农大兽医院有牙科吗挂号（东北农大动物医院好吗）">东北农大兽医院有牙科吗挂号（东北农大动物医院好吗）</a></li>
+                        <li class="py-2"><a href="/news/article-63748.htm" title="宠物粮食加工设备有哪些品牌 宠物粮食加工设备有哪些品牌好">宠物粮食加工设备有哪些品牌 宠物粮食加工设备有哪些品牌好</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                    <p>V2rayNode节点分享站 版权所有</p>
+                    <p>Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/v2raynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- banner slider -->
+    <script src="/assets/website/js/frontend/v2raynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: false
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //banner slider -->
+    <!-- counter for stats -->
+    <script src="/assets/website/js/frontend/v2raynode/counter.js"></script>
+    <!-- //counter for stats -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/v2raynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/v2raynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
