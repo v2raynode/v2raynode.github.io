@@ -129,6 +129,7 @@
                   				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">一、字符缓冲流</a></li> <li><a href="#_label1" rel="nofollow">二、字符缓冲流的特有方法</a></li> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>一、字符缓冲流</h2> <p>BufferedWriter:文本写入字符输出流，缓冲字符，以提供单个字符，数组和字符串的高效写入。可以指定缓冲区大小，或者可以接受默认大小。 默认值足够大，可用于大多数用途。</p> <p>构造方法：</p> <table border="1" cellpadding="1" cellspacing="1" style="width:581px"> <tbody> <tr> <td style="height:18px; text-align:center; width:206px">BufferedWriter(Writer out)</td> <td style="height:18px; text-align:center; width:344px">创建使用默认大小的输出缓冲区的缓冲字符输出流</td> </tr> <tr> <td style="text-align:center; width:206px">BufferedWriter(Writer out, int sz)</td> <td style="text-align:center; width:344px">创建一个新的缓冲字符输出流，使用给定大小的输出缓冲区</td> </tr> </tbody> </table> <p>BufferedReader:从字符输入流读取文本，缓冲字符，以提供字符，数组和行的高效读取。可以指定缓冲区大小，或者可以使用默认大小。 默认值足够大，可用于大多数用途。</p> <p>构造方法：</p> <table border="1" cellpadding="1" cellspacing="1" style="width:581px"> <tbody> <tr> <td style="text-align:center; width:227px">BufferedReader(Reader in)</td> <td style="text-align:center; width:325px">创建使用默认大小的输入缓冲区的缓冲字符输入流</td> </tr> <tr> <td style="text-align:center; width:227px">BufferedReader(Reader in, int sz)    </td> <td style="text-align:center; width:325px">创建使用指定大小的输入缓冲区的缓冲字符输入流</td> </tr> </tbody> </table> <p>字符缓冲流读数据的方式：</p> <ul> <li>int read()：一次读取一个字符数据</li> <li>int read(char[] cbuf)：一次读一个字符数组数据</li> <li>int read(char cbuf[], int off, int len)：一次读一个字符数组部分数据</li> <li>String readLine()：读一行文字。结果包含行的内容的字符，不包含任何行终止字符，如果流的结尾已经达到，则为null</li> </ul> <p>字符缓冲流写数据的方式：</p> <ul> <li>void write(int c)：写入一个字符</li> <li>void write(char[] cbuf)：写入一个字符数组</li> <li>void write(char[] cbuf,int off,int len)：写入字符数组的一部分</li> <li>void write(String str)：写入一个字符串</li> <li>void write(String str,int off,int len)：写入一个字符串的一部分</li> <li>void newLine()：写一行行分隔符，行分隔符字符串由系统属性定义</li> </ul> <p>例子-字符缓冲流实现复制Java文件：</p> <div class="ay1code"> <pre class="brush:java;">public class BufferedWriteReaderDemo {      public static void main(String[] args) throws IOException {          //使用字符缓冲流实现一个文件的复制          //使用子类FileWrite\FileReader替代OutputStreamWrite\InputStreamReader          BufferedReader br=new BufferedReader(new FileReader("E:\\abc.txt"));          BufferedWriter bw=new BufferedWriter(new FileWriter("F:\\abcdef.txt"));          //读取数据  //        int len;  //        while ((len=br.read())!=-1){  //            bw.write(len);  //        }          int len;          char[] ch=new char[1024];          while ((len=br.read(ch))!=-1){              bw.write(ch);          }          //释放资源          br.close();          bw.close();      }  }  </pre> </div> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>二、字符缓冲流的特有方法</h2> <p>BufferedWriter:</p> <p>void newLine():写一行行分隔符，行分隔符字符串由系统属性定义</p> <p>BufferedReader:</p> <p>public String readLine():读一行文字。结果包含行的内容的字符串，不包括任何行终止字符；如果流的结尾已经到达，则值为null</p> <p>例子-字符缓冲流特有方法实现复制Java文件：</p> <div class="ay1code"> <pre class="brush:java;">public class Demo02 {      public static void main(String[] args) throws IOException {          //字符缓冲流特有方法实现复制Java文件          BufferedReader br=new BufferedReader(new FileReader("E:\\abc.txt"));          BufferedWriter bw=new BufferedWriter(new FileWriter("F:\\aaa.txt"));          //读写数据          String line;          while ((line=br.readLine())!=null){              bw.write(line);              bw.newLine();//换行              bw.flush();//刷新缓存区          }                   //释放资源          br.close();          bw.close();      }  }  </pre> </div> <p>字符流只能复制文本数据，有5种方式，一般采用字符缓冲流的特有功能</p> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-93832.htm">C#面向抽象编程第二讲</a></p>
+                                        <p>下一个：<a href="/news/article-94646.htm">一片枫叶的样子（一片枫叶的样子图片大全）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -138,16 +139,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-87949.htm" title="动物疫苗行业分析 动物疫苗行业分析报告">动物疫苗行业分析 动物疫苗行业分析报告</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-25-node-share-links.htm" title="3月25日|22.8M/S，最新高速免费节点，SSR/V2ray/Clash/Shadowrocket订阅链接地址，科学上网">3月25日|22.8M/S，最新高速免费节点，SSR/V2ray/Clash/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/news/article-68095.htm" title="梦见抱别的女人被老婆看见（梦见抱别的女人被老婆看见了啥意思）">梦见抱别的女人被老婆看见（梦见抱别的女人被老婆看见了啥意思）</a></li>
-                        <li class="py-2"><a href="/news/article-81514.htm" title="猫打疫苗三针多少钱（猫咪打三针疫苗多少钱）">猫打疫苗三针多少钱（猫咪打三针疫苗多少钱）</a></li>
-                        <li class="py-2"><a href="/news/article-89410.htm" title="猫三联每一针间隔时间多久（猫三联一针多少）">猫三联每一针间隔时间多久（猫三联一针多少）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-9-free-ssr-node.htm" title="3月9日|23M/S，最新高速免费节点，V2ray/Clash/SSR/Shadowrocket订阅链接地址，科学上网">3月9日|23M/S，最新高速免费节点，V2ray/Clash/SSR/Shadowrocket订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-3-10-clash-windows.htm" title="3月10日|21.6M/S，最新高速免费节点，Clash/V2ray/Shadowrocket/SSR订阅链接地址，科学上网">3月10日|21.6M/S，最新高速免费节点，Clash/V2ray/Shadowrocket/SSR订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-4-7-free-v2ray.htm" title="4月7日|19.2M/S，最新高速免费节点，Shadowrocket/Clash/SSR/V2ray订阅链接地址，科学上网">4月7日|19.2M/S，最新高速免费节点，Shadowrocket/Clash/SSR/V2ray订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-66841.htm" title="广州领养狗狗的平台（广州领养狗狗的平台叫什么）">广州领养狗狗的平台（广州领养狗狗的平台叫什么）</a></li>
+                        <li class="py-2"><a href="/news/article-90883.htm" title="关于java抽象方法和抽象类的一些理解">关于java抽象方法和抽象类的一些理解</a></li>
+                        <li class="py-2"><a href="/news/article-80126.htm" title="Java程序整数的位运算">Java程序整数的位运算</a></li>
+                        <li class="py-2"><a href="/news/article-72016.htm" title="java8新特性Stream流中anyMatch和allMatch和noneMatch的区别详解">java8新特性Stream流中anyMatch和allMatch和noneMatch的区别详解</a></li>
+                        <li class="py-2"><a href="/news/article-77382.htm" title="孕妇被猫抓出血没***没事吧（孕妇被猫抓了出血了怎么办）">孕妇被猫抓出血没***没事吧（孕妇被猫抓了出血了怎么办）</a></li>
+                        <li class="py-2"><a href="/news/article-72015.htm" title="Hbase架构各组件详解">Hbase架构各组件详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-31-free-high-speed-nodes.htm" title="3月31日|22.7M/S，最新高速免费节点，V2ray/Shadowrocket/Clash/SSR订阅链接地址，科学上网">3月31日|22.7M/S，最新高速免费节点，V2ray/Shadowrocket/Clash/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-free-shadowrocket-node.htm" title="3月13日|22M/S，最新高速免费节点，Shadowrocket/SSR/V2ray/Clash订阅链接地址，科学上网">3月13日|22M/S，最新高速免费节点，Shadowrocket/SSR/V2ray/Clash订阅链接地址，科学上网</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-3-12-free-ssr-node.htm" title="3月12日|19.2M/S，最新高速免费节点，Shadowrocket/Clash/SSR/V2ray订阅链接地址，科学上网">3月12日|19.2M/S，最新高速免费节点，Shadowrocket/Clash/SSR/V2ray订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/news/article-79447.htm" title="猫三联到底是几针疫苗（猫三联是几针啊）">猫三联到底是几针疫苗（猫三联是几针啊）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-1-free-node-subscribe-links.htm" title="4月1日|18.1M/S，最新高速免费节点，Shadowrocket/V2ray/Clash/SSR订阅链接地址，科学上网">4月1日|18.1M/S，最新高速免费节点，Shadowrocket/V2ray/Clash/SSR订阅链接地址，科学上网</a></li>
                     </ul>
     </div>
 </div>
@@ -159,7 +160,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">35</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+                <h4><span class="badge" style="float: right;">44</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
