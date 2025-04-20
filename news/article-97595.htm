@@ -1,0 +1,355 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raynode.github.io/news/article-97595.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Vue项目如何设置反向代理和cookie设置问题_vue.js</title>
+    <link rel="icon" href="/assets/website/img/v2raynode/favicon.ico" type="image/x-icon"/>
+        <meta name="description" content="目录  Vue设置反向代理和cookie设置  项目场景 问题描述 原因分析 解决方案  Vue项目使用js-cookie细则  什么是js-cookie 在项目中进行安装 在项目中的入口文件（mai" />
+    
+    <meta name="author" content="V2rayNode节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raynode.github.io/news/article-97595.htm" />
+    <meta property="og:site_name" content="V2rayNode节点分享站" />
+    <meta property="og:title" content="Vue项目如何设置反向代理和cookie设置问题_vue.js" />
+    <meta property="og:image" content="https://v2raynode.github.io/uploads/20240303/93e24701f017df541c51f42a31b872fa.webp" />
+        <meta property="og:release_date" content="2025-04-17T08:59:43" />
+    <meta property="og:updated_time" content="2025-04-17T08:59:43" />
+        <meta property="og:description" content="目录  Vue设置反向代理和cookie设置  项目场景 问题描述 原因分析 解决方案  Vue项目使用js-cookie细则  什么是js-cookie 在项目中进行安装 在项目中的入口文件（mai" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Vue项目如何设置反向代理和cookie设置问题_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- google-fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/v2raynode/style-starter.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KDKFWTWW0S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KDKFWTWW0S');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke">
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                                    <span>V2ray Node</span>
+                                </a>
+
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2" style="line-height: 3rem;word-break: break-all;">Vue项目如何设置反向代理和cookie设置问题_vue.js</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span><a href="/news/">新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- about section -->
+    <section class="video-section py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">Vue设置反向代理和cookie设置</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">项目场景</a></li> <li><a href="#_lab2_0_1" rel="nofollow">问题描述</a></li> <li><a href="#_lab2_0_2" rel="nofollow">原因分析</a></li> <li><a href="#_lab2_0_3" rel="nofollow">解决方案</a></li> </ul> <li><a href="#_label1" rel="nofollow">Vue项目使用js-cookie细则</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_4" rel="nofollow">什么是js-cookie</a></li> <li><a href="#_lab2_1_5" rel="nofollow">在项目中进行安装</a></li> <li><a href="#_lab2_1_6" rel="nofollow">在项目中的入口文件（main.js）全局引入</a></li> <li><a href="#_lab2_1_7" rel="nofollow">在项目中使用</a></li> </ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>Vue设置反向代理和cookie设置</h2> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>项目场景</h3> <p>最近使用Vue开发一个新的项目，因为服务器还没到，调取后端本地接口，因为请求接口的时候没有跨域，就没开反向代理。后面就被一个很基础的东西踩了坑，就是 cookie的一些知识，记录一下，加深一下印象。</p> <p class="maodian"><a name="_lab2_0_1" rel="nofollow"></a></p> <h3>问题描述</h3> <p>联调过程中，发现调用登录接口之后，再去调其他接口，就会报登录状态失效，之前做了好久小程序的项目，突然遇到这种有点懵逼。</p> <p class="maodian"><a name="_lab2_0_2" rel="nofollow"></a></p> <h3>原因分析</h3> <p>首先，出现这个问题，问了下后端，后端说是Cookie没有传给他。然后我们来确认下Cookie的定义和作用是什么？</p> <p>HTTP 协议中的 Cookie 它包括 Web Cookie 和浏览器 Cookie，它是服务器发送到 Web 浏览器的一小块数据。服务器发送到浏览器的 Cookie，浏览器会进行存储，并与下一个请求一起发送到服务器。通常，它用于判断两个请求是否来自于同一个浏览器，例如用户保持登录状态。</p> <p>当接收到客户端发出的 HTTP 请求时，服务器可以发送带有响应的 Set-Cookie 标头，Cookie 通常由浏览器存储，然后将 Cookie 与 HTTP 标头一同向服务器发出请求。</p> <p>看到这里，我就去看了下，当我调用登录接口成功的时候，后端是返回了Set-Cookie 的，但是发现浏览器没有去设置。看到这里，就知道Set-Cookie 浏览器没有生效。Cookie 基于安全方面的考虑，在浏览器中无法获取跨域的 Cookie 。</p> <p class="maodian"><a name="_lab2_0_3" rel="nofollow"></a></p> <h3>解决方案</h3> <p>在Vue项目里根目录vue.config.js设置一下反向代理</p> <div class="ay1code"> <pre class="brush:js;">module.exports = {   devServer: {    // 设置代理    proxy: {     "/api": {      target: "http://127.0.0.1:8081/", // 域名      ws: true, // 是否启用websockets      changOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，                         //这样服务端和服务端进行数据的交互就不会有跨域问题      pathRequiresRewrite: {       "^/api": "/"      }     }    }   }  }</pre> </div> <p>请求的时候</p> <div class="ay1code"> <pre class="brush:js;">// '/api'等于'http://127.0.0.1:8081/api'  // 此时请求地址为'http://127.0.0.1:8081/api/picture?method=upload'  get('/api/picture?method=upload')</pre> </div> <p>解决完成！开心。</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>Vue项目使用js-cookie细则</h2> <p>背景：最近的vue项目中由于项目的token是需要设置过期时间的，当然，以前这种过期的行为逻辑一直是后端来控制，但这次要求前端也进行token时间的一个监控，由于懒得封装cookie，所以就用了js-cookie的一个cookie封装库</p> <p class="maodian"><a name="_lab2_1_4" rel="nofollow"></a></p> <h3>什么是js-cookie</h3> <p>看名字我们就知道这是关于cookie存储的一个js的API，根据官网描述其优点有：适用所有浏览器、接受任何字符、经过任何测试没什么bug、支持CMD和CommonJS、压缩之后非常小，仅900个字节</p> <p class="maodian"><a name="_lab2_1_5" rel="nofollow"></a></p> <h3>在项目中进行安装</h3> <div class="ay1code"> <pre class="brush:js;">npm install js-cookie 'js-cookie' --save</pre> </div> <p class="maodian"><a name="_lab2_1_6" rel="nofollow"></a></p> <h3>在项目中的入口文件（main.js）全局引入</h3> <div class="ay1code"> <pre class="brush:js;">import Cookies from 'js-cookie'</pre> </div> <p class="maodian"><a name="_lab2_1_7" rel="nofollow"></a></p> <h3>在项目中使用</h3> <p>1、存cookie  set方法支持的属性有 ：  expires-&gt;过期时间    path-&gt;设置为指定页面创建cookie   domain-》设置对指定域名及指定域名的子域名可见  secure-&gt;值有false和true ,表示设置是否只支持https,默认是false</p> <div class="ay1code"> <pre class="brush:js;">Cookies.set('key', 'value');  //创建简单的cookie  Cookies.set('key', 'value', { expires: 27 });//创建有效期为27天的cookie  Cookies.set('key', 'value', { expires: 17, path: ''  }); //可以通过配置path,为当前页创建有效期7天的cookie</pre> </div> <p>2、取cookie</p> <div class="ay1code"> <pre class="brush:js;">Cookies.get('key'); // 获取指定key 对应的value  Cookies.get(); //获取所有value</pre> </div> <p>3、删除cookie</p> <div class="ay1code"> <pre class="brush:js;">Cookies.remove('key');//删除普通的cookie  Cookies.remove('name', { path: '' }); // 删除存了指定页面path的cookie</pre> </div> <p>注意：如果存的是对象，如：</p> <div class="ay1code"> <pre class="brush:js;">userInfo = {age:111,score:90};  Cookie.set('userInfo',userInfo)</pre> </div> <p>取出来的userInfo需要进行JSON的解析,解析为对象：</p> <div class="ay1code"> <pre class="brush:js;">let res = JSON.parse( Cookie.get('userInfo') );</pre> </div> <p>当然你也可以使用：</p> <div class="ay1code"> <pre class="brush:js;">Cookie.getJSON('userInfo');</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-96881.htm">狗粮排行榜性价比高（十大口碑最好的狗粮）</a></p>
+                                        <p>下一个：<a href="/news/article-97596.htm">动物疫苗有哪些大厂家打（十大动物疫苗公司）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-v2ray-subscribe.htm" title="3月8日|19.7M/S，最新高速免费节点，V2ray/Shadowrocket/Clash/SSR订阅链接地址，科学上网">3月8日|19.7M/S，最新高速免费节点，V2ray/Shadowrocket/Clash/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-66206.htm" title="【宠物免费领养】-合肥58同城（合肥免费领养猫咪）">【宠物免费领养】-合肥58同城（合肥免费领养猫咪）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-free-ssr-subscribe.htm" title="3月11日|20.6M/S，最新高速免费节点，SSR/Shadowrocket/Clash/V2ray订阅链接地址，科学上网">3月11日|20.6M/S，最新高速免费节点，SSR/Shadowrocket/Clash/V2ray订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-free-v2ray.htm" title="3月16日|18.3M/S，最新高速免费节点，V2ray/SSR/Shadowrocket/Clash订阅链接地址，科学上网">3月16日|18.3M/S，最新高速免费节点，V2ray/SSR/Shadowrocket/Clash订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-72671.htm" title="中国农业科学院哈尔滨畜牧兽医研究所（中国农科院哈尔滨兽医研究所官网）">中国农业科学院哈尔滨畜牧兽医研究所（中国农科院哈尔滨兽医研究所官网）</a></li>
+                        <li class="py-2"><a href="/news/article-79447.htm" title="猫三联到底是几针疫苗（猫三联是几针啊）">猫三联到底是几针疫苗（猫三联是几针啊）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-7-free-v2ray.htm" title="4月7日|19.2M/S，最新高速免费节点，Shadowrocket/Clash/SSR/V2ray订阅链接地址，科学上网">4月7日|19.2M/S，最新高速免费节点，Shadowrocket/Clash/SSR/V2ray订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-70037.htm" title="Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）">Css 弹性布局（Flex）详细介绍（Flex 属性详解、场景分析）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-15-free-clash.htm" title="4月15日|20.8M/S，最新高速免费节点，V2ray/SSR/Clash/Shadowrocket订阅链接地址，科学上网">4月15日|20.8M/S，最新高速免费节点，V2ray/SSR/Clash/Shadowrocket订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-99818.htm" title="饲料厂饲料机设备多少钱一台（饲料机器设备）">饲料厂饲料机设备多少钱一台（饲料机器设备）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <p>V2rayNode节点分享站 版权所有</p>
+                    <p>Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/v2raynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- banner slider -->
+    <script src="/assets/website/js/frontend/v2raynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: false
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //banner slider -->
+    <!-- counter for stats -->
+    <script src="/assets/website/js/frontend/v2raynode/counter.js"></script>
+    <!-- //counter for stats -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/v2raynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/v2raynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
