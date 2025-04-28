@@ -1,0 +1,358 @@
+<!doctype html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://v2raynode.github.io/news/article-104191.htm" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈</title>
+    <link rel="icon" href="/assets/website/img/v2raynode/favicon.ico" type="image/x-icon"/>
+        <meta name="description" content="目录  前言： 一. 运行时数据区域 1.1 程序计数器(线程私有) 1.2 Java虚拟机栈(线程私有) 什么叫做操作数栈？ 什么是局部变量表? 什么是动态链接？ 虚方法和非虚方法？ 虚拟机中的方法" />
+    
+    <meta name="author" content="V2rayNode节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://v2raynode.github.io/news/article-104191.htm" />
+    <meta property="og:site_name" content="V2rayNode节点分享站" />
+    <meta property="og:title" content="[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈" />
+    <meta property="og:image" content="https://v2raynode.github.io/uploads/20240303/53dba6fc51ed47dae715e4fd403abe14.webp" />
+        <meta property="og:release_date" content="2025-04-25T07:27:28" />
+    <meta property="og:updated_time" content="2025-04-25T07:27:28" />
+        <meta property="og:description" content="目录  前言： 一. 运行时数据区域 1.1 程序计数器(线程私有) 1.2 Java虚拟机栈(线程私有) 什么叫做操作数栈？ 什么是局部变量表? 什么是动态链接？ 虚方法和非虚方法？ 虚拟机中的方法" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+
+    <!-- google-fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="/assets/website/css/v2raynode/style-starter.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KDKFWTWW0S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KDKFWTWW0S');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg stroke">
+                <a class="navbar-brand d-flex align-items-center" href="/">
+                                    <span>V2ray Node</span>
+                                </a>
+
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-lg-auto">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+    <!-- inner banner -->
+    <div class="inner-banner">
+        <section class="w3l-breadcrumb">
+            <div class="container">
+                <h1 class="inner-text-title font-weight-bold text-white mb-sm-3 mb-2" style="line-height: 3rem;word-break: break-all;">[JVM]java虚拟机运行时数据区域&#8211;程序计数器、虚拟机栈和本地方法栈</h1>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="/">首页</a></li>
+                    <li><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span><a href="/news/">新闻资讯</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>正文</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!-- //inner banner -->
+    <!-- about section -->
+    <section class="video-section py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>目录</strong></p> <p id="-toc" style="margin-left:0px;"> <p id="%E5%89%8D%E8%A8%80%EF%BC%9A-toc" style="margin-left:0px;">前言：</p> <p id="%E4%B8%80.%20%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F-toc" style="margin-left:0px;">一. 运行时数据区域</p> <p id="1.1%20%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8(%E7%BA%BF%E7%A8%8B%E7%A7%81%E6%9C%89)-toc" style="margin-left:40px;">1.1 程序计数器(线程私有)</p> <p id="1.2%20Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88(%E7%BA%BF%E7%A8%8B%E7%A7%81%E6%9C%89)-toc" style="margin-left:40px;">1.2 Java虚拟机栈(线程私有)</p> <p id="%E4%BB%80%E4%B9%88%E5%8F%AB%E5%81%9A%E6%93%8D%E4%BD%9C%E6%95%B0%E6%A0%88%EF%BC%9F-toc" style="margin-left:80px;">什么叫做操作数栈？</p> <p id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E8%A1%A8%3F-toc" style="margin-left:80px;">什么是局部变量表?</p> <p id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%EF%BC%9F-toc" style="margin-left:80px;">什么是动态链接？</p> <p id="%E8%99%9A%E6%96%B9%E6%B3%95%E5%92%8C%E9%9D%9E%E8%99%9A%E6%96%B9%E6%B3%95%EF%BC%9F-toc" style="margin-left:80px;">虚方法和非虚方法？</p> <p id="%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9F-toc" style="margin-left:80px;">虚拟机中的方法调用指令？</p> <p id="%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%B9%E6%B3%95%E5%87%BA%E5%8F%A3%EF%BC%9F-toc" style="margin-left:80px;">什么是方法出口？</p> <p id="1.3%20%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88-toc" style="margin-left:40px;">1.3 本地方法栈</p> <hr id="hr-toc"/> </h1> <p>JVM很重要，内存模型还是很需要知道的。</p> <p>再次熟悉一遍内容。</p> <p>内容来自《深入理解java虚拟机》</p> </h1> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/865b32dcec15356baee58df3d4ce5be7.jpg"></p> <p><strong>注意共享方法区和堆。</strong></p> <p><strong>但是线程私有的程序计数器，虚拟机栈，本地方法栈</strong></p> <h2 id="1.1%20%E7%A8%8B%E5%BA%8F%E8%AE%A1%E6%95%B0%E5%99%A8(%E7%BA%BF%E7%A8%8B%E7%A7%81%E6%9C%89)">1.1 程序计数器(线程私有)</h2> <p>程序计数器是一块很小的内存空间，可以当做当前程序所执行的字节码的行号指示器。</p> <p>java底层程序读的是class文件。</p> <p>这是一种概念模型，真的情况可能各种虚拟机使用优化的高效的方法区执行。</p> <p>字节码的指示器的工作时候就是通过改变这个计数器的值，来选取下一条要执行的字节码的命令，分支，循环等等基础功能都需要这个计数器。</p> <p>java虚拟机的多线程是通过线程轮流切换并分配处理器的执行时间的方式来实现的。</p> <p>一个处理器，一个内核，就只会执行一个线程中的指令。</p> <p><span style="color:#f33b45;"><strong>为了线程切换之后能够恢复到正确的位置，各个线程之间互不影响，独立存储，我们称这类内存区域为 线程私有的内存。</strong></span></p> <p>如果正在执行的是java方法，那么这个计数器记录的是虚拟机字节码的执行的指令的地址。</p> <p>如果是native方法，那么这个计数器为空。</p> <h2 id="1.2%20Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88(%E7%BA%BF%E7%A8%8B%E7%A7%81%E6%9C%89)">1.2 Java虚拟机栈(线程私有)</h2> <p>生命周期与线程相同，是线程私有的。</p> <p>每个方法在执行的过程都会创建一个<span style="color:#f33b45;"><strong>栈帧(stack frame)</strong></span></p> <p><span style="color:#f33b45;"><strong>用来存储：局部变量表，操作数栈，动态链接，方法出口等信息。</strong></span></p> <p><span style="color:#f33b45;"><strong>每一个方法在调用到执行完成的过程，就对应着一个栈帧在虚拟机中入栈到出栈的过程。</strong></span></p> <h3 id="%E4%BB%80%E4%B9%88%E5%8F%AB%E5%81%9A%E6%93%8D%E4%BD%9C%E6%95%B0%E6%A0%88%EF%BC%9F"><span style="color:#f33b45;"><strong>什么叫做操作数栈？</strong></span></h3> <p><strong>这也是为什么java性能低的原因，因为基于栈的指令集系统做的平台无关性，但是也降低了性能</strong></p> <p>编译期就已经确定，存在方法code属性中，栈的特点后进先出，存放表达式。</p> <p>因为就我们熟知的X86 和ARM指令集，对数据的操作都是基于寄存器，比如对两个数进行加法操作，那么会把两个数送到</p> <p>两个寄存器中，在执行加法操作。</p> <p>基于栈的设计模式，是将数放在栈中，我们需要使用的时候，将栈顶的数据出栈，并执行相应的操作。</p> <p>举例来说，在JVM中 执行 a = b + c 的字节码执行过程中操作数栈以及局部变量表的变化如下图所示。</p> <p>局部变量表中存储着a、b、c 三个局部变量，首先将b和c分别入栈<br /><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/b2dcf94487152f9add62983d66649265.jpg"></p> <p>将栈顶的两个数出栈执行加法操作，并将结果保存至栈顶，之后将栈顶的数出栈赋值给a<br /><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/4eddee173729def0589d61340c5ebdfe.jpg"></p> <h3 id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E8%A1%A8%3F"><span style="color:#f33b45;"><strong>什么是局部变量表?</strong></span></h3> <p>存放编译期间可知的各种基本数据类型，对象的引用。</p> <p>局部变量空间，对于long和double占用两个Slot，其余的基本类型占用一个。</p> <p>局部变量表的所需要的内存空间，会在编译期间完成分配。</p> <p>因为运行过程都走的是方法<strong>，那么进入一个方法的时候，这个方法需要在帧中分配多大的局部变量空间是完全确定的。</strong>在方法运行期间不会改变局部变量表的大小。</p> <h3 id="%E4%BB%80%E4%B9%88%E6%98%AF%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%EF%BC%9F"><span style="color:#f33b45;"><strong>什么是动态链接？</strong></span></h3> <p>https://www.cnblogs.com/Timeouting-Study/p/12511969.html</p> <p>Class文件的常量池中存在有大量的符号引用,字节码中的方法调用指令就以指向常量池的引用作为参数</p> <ul> <li>部分符号引用在类加载阶段(解析)的时候就转化为直接引用,这种转化为<strong>静态链接</strong></li> <li>部分符号引用在运行期间转化为直接引用,这种转化为<strong>动态链接</strong></li> </ul> <p><span style="color:#f33b45;">方法的调用：绑定(跟上面的动态链接是一体的)</span></p> <p>方法绑定机制为：早期绑定和晚期绑定。</p> <p>绑定是一个字段、方法或者类在符号引用被替换为直接引用的过程，这仅仅发生过一次早期绑定</p> <p>早期绑定就是指被调用的目标方法如果在编译期可知，且运行期保持不变时，即可将这个方法与所属的类型进行绑定，这样一来，由于明确了被调用的目标方法究竟是哪一个，因此也就可以使用静态链接的方式将符号引用转换为直接引用。.</p> <p>晚期绑定：被调用方法在编译时不能被确定下来</p> <p>每一个栈帧内部都包含有一个指向运行时常量池&nbsp;中该栈帧方法的引用。包含这个引用的目的就是为了支持当前方法的代码能够实现动态链接（Dynamic Linking）。例如invokednamic指令</p> <p>在Java源文件被编译到字节码文件中时，所有的变量和方法引用都作为符号引用（Symbolic Reference）保存在class文件的常量池。</p> <p><span style="color:#f33b45;"><strong>常量池保存在哪？在class文件中。然后运行时候在方法区里面。</strong></span></p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/716176573495f4edbe0afa92a49f2963.jpg"></p> <p>这个博主写的很清晰：</p> <p>https://www.cnblogs.com/Timeouting-Study/p/12511969.html</p> <p><span style="color:#f33b45;"><strong>比如：描述一个方法调用了另外的其他方法时，就是通过常量池中指向方法的符号引用来表示的，那么动态链接的作用就是为了将这些符号引用转换为调用方法的直接调用</strong></span></p> <p><span style="color:#f33b45;"><strong>即：符号引用动态的运行时候转成直接引用。</strong></span></p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220821/e3189d66f518cd1a043130c7ba3f0256.jpg"></p> <p><strong><span style="color:#f33b45;">Q:为什么需要常量池？</span></strong></p> <p>A：字节码文件中需要很多数据的支持，但数据很大，不能直接保存到字节码文件中，所以常量池的作用就是为了提供一些符号和常量，便于指令的识别。</p> <h3 id="%E8%99%9A%E6%96%B9%E6%B3%95%E5%92%8C%E9%9D%9E%E8%99%9A%E6%96%B9%E6%B3%95%EF%BC%9F"><span style="color:#f33b45;">虚方法和非虚方法？</span></h3> <p>非虚方法：如果方法在编译器就确定了具体的调用版本，这个版本在运行时是不可变的。这样的方法称为非虚方法</p> <p><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;静态方法、私有方法、final方法、实例构造器、父类方法都是非虚方法</strong></p> <p>其他方法就是虚方法：（子类对象的多态性的前提）：1.类的继承关系&nbsp; &nbsp; &nbsp; &nbsp;2.方法可重写</p> <h3 id="%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9F"><span style="color:#f33b45;">虚拟机中的方法调用指令？</span></h3> <p>普通调用指令：</p> <p>　　1. invokestatic: 调用静态方法，解析阶段确定唯-方法版本:<br /> 　　2. invokespecial:调用&lt;init&gt;方法、 私有及父类方法，解析阶段确定唯一方法版本<br /> 　　3. invokevirtual: 调用所有虚方法<br /> 　　4. invokeinterface: 调用接口方法</p> <p>动态调用指令：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;5.前四条指令固化在虚拟机内部，方法的调用执行不可人为干预，而invokedynamic指令则支持由用户确定方法版本。其中&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; invokestatic指令和invokespecial指令调用的方法称为非虚方法，其余的(final修饰的除外)称为虚方法。</p> <h3 id="%E4%BB%80%E4%B9%88%E6%98%AF%E6%96%B9%E6%B3%95%E5%87%BA%E5%8F%A3%EF%BC%9F"><span style="color:#f33b45;"><strong>什么是方法出口？</strong></span></h3> <p>当一个方法执行完毕之后，要返回之前调用它的地方，因此在栈帧中必须保存一个方法返回地址。</p> <p>但是出现异常会不会返回地址</p> <blockquote> <p>补充：</p> <p>局部变量，在方法内部声明，当该方法运行完时，内存即被释放。<br /> 成员变量，只要该对象还在，哪怕某一个方法运行完了，还是存在。<br /> 从系统的角度来说，声明局部变量有利于内存空间的更高效利用（方法运行完即回收）。<br /> 成员变量可用于各个方法间进行数据共享。</p> </blockquote> <h2 id="1.3%20%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%A0%88"><span style="color:#f33b45;">1.3 本地方法栈</span></h2> <p>大体上都类似于虚拟机栈<br /> 不同点：栈执行的java方法服务<br /> 本地方法栈执行的是Native方法（不一定是用java开发的）服务</p> <p>参考与更多需要了解的：</p> <p>JVM运行时数据区域</p> <p>https://www.cnblogs.com/Gang-Bryant/p/10705582.html</p> <p>字节码的运行过程</p> <p>https://blog.csdn.net/a15089415104/article/details/83245568</p> <p>对于操作数栈(转载了下面大佬的)：</p> <p>https://www.cnblogs.com/kesan/p/11368934.html</p> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-102802.htm">springboot项目部署好之后第一次启动慢的解决办法</a></p>
+                                        <p>下一个：<a href="/news/article-104192.htm">中牧兽药官方网站（中牧兽药质量怎么样）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-102802.htm" title="springboot项目部署好之后第一次启动慢的解决办法">springboot项目部署好之后第一次启动慢的解决办法</a></li>
+                        <li class="py-2"><a href="/news/article-78757.htm" title="动物打完疫苗多久可以测抗体 动物打完疫苗多久可以测抗体呢">动物打完疫苗多久可以测抗体 动物打完疫苗多久可以测抗体呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-15-free-ssr-subscribe.htm" title="3月15日|20.9M/S，最新高速免费节点，V2ray/SSR/Clash/Shadowrocket订阅链接地址，科学上网">3月15日|20.9M/S，最新高速免费节点，V2ray/SSR/Clash/Shadowrocket订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-101216.htm" title="厦门同安宠物领养中心地址在哪里（同安宠物店哪家好）">厦门同安宠物领养中心地址在哪里（同安宠物店哪家好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-20-node-share-links.htm" title="3月20日|20.1M/S，最新高速免费节点，Shadowrocket/V2ray/Clash/SSR订阅链接地址，科学上网">3月20日|20.1M/S，最新高速免费节点，Shadowrocket/V2ray/Clash/SSR订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-93833.htm" title="Java 轻松掌握字符缓冲流的使用_java">Java 轻松掌握字符缓冲流的使用_java</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-19-shadowrocket-node.htm" title="4月19日|22.9M/S，最新高速免费节点，Shadowrocket/SSR/V2ray/Clash订阅链接地址，科学上网">4月19日|22.9M/S，最新高速免费节点，Shadowrocket/SSR/V2ray/Clash订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/news/article-68745.htm" title="广州有宠物领养中心嘛在哪里（广州的宠物领养机构）">广州有宠物领养中心嘛在哪里（广州的宠物领养机构）</a></li>
+                        <li class="py-2"><a href="/news/article-95411.htm" title="vue项目中设置Echarts图表的大小">vue项目中设置Echarts图表的大小</a></li>
+                        <li class="py-2"><a href="/news/article-68094.htm" title="在Docker容器中部署MSSQL_docker_">在Docker容器中部署MSSQL_docker_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about section -->
+        <!-- footer -->
+    <footer class="w3l-footer-22 position-relative mt-5 pt-5">
+        
+        <!-- copyright -->
+        <div class="copyright-footer text-center">
+            <div class="container">
+                <div class="columns">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <p>V2rayNode节点分享站 版权所有</p>
+                    <p>Powered by WordPress</p>
+                </div>
+            </div>
+        </div>
+        <!-- //copyright -->
+    </footer>
+    <!-- //footer -->
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fa fa-level-up" aria-hidden="true"></span>
+    </button>
+    <script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("movetop").style.display = "block";
+        } else {
+            document.getElementById("movetop").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    </script>
+    <!-- //move top -->
+    <!-- common jquery plugin -->
+    <script src="/assets/website/js/frontend/v2raynode/jquery-3.5.1.min.js"></script>
+    <!-- //common jquery plugin -->
+    <!-- banner slider -->
+    <script src="/assets/website/js/frontend/v2raynode/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.owl-one').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: false,
+            responsiveClass: true,
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1000,
+            autoplayHoverPause: false,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                480: {
+                    items: 1,
+                    nav: false
+                },
+                667: {
+                    items: 1,
+                    nav: false
+                },
+                1000: {
+                    items: 1,
+                    nav: false
+                }
+            }
+        })
+    })
+    </script>
+    <!-- //banner slider -->
+    <!-- counter for stats -->
+    <script src="/assets/website/js/frontend/v2raynode/counter.js"></script>
+    <!-- //counter for stats -->
+    <!-- theme switch js (light and dark)-->
+    <script src="/assets/website/js/frontend/v2raynode/theme-change.js"></script>
+    <script>
+    function autoType(elementClass, typingSpeed) {
+        var thhis = $(elementClass);
+        thhis.css({
+            "position": "relative",
+            "display": "inline-block"
+        });
+        thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+        thhis = thhis.find(".text-js");
+        var text = thhis.text().trim().split('');
+        var amntOfChars = text.length;
+        var newString = "";
+        thhis.text("|");
+        setTimeout(function() {
+            thhis.css("opacity", 1);
+            thhis.prev().removeAttr("style");
+            thhis.text("");
+            for (var i = 0; i < amntOfChars; i++) {
+                (function(i, char) {
+                    setTimeout(function() {
+                        newString += char;
+                        thhis.text(newString);
+                    }, i * typingSpeed);
+                })(i + 1, text[i]);
+            }
+        }, 1500);
+    }
+
+    $(document).ready(function() {
+        // Now to start autoTyping just call the autoType function with the 
+        // class of outer div
+        // The second paramter is the speed between each letter is typed.   
+        autoType(".type-js", 200);
+    });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- MENU-JS -->
+    <script>
+    $(window).on("scroll", function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 80) {
+            $("#site-header").addClass("nav-fixed");
+        } else {
+            $("#site-header").removeClass("nav-fixed");
+        }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function() {
+        $("header").toggleClass("active");
+    });
+    $(document).on("ready", function() {
+        if ($(window).width() > 991) {
+            $("header").removeClass("active");
+        }
+        $(window).on("resize", function() {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+        });
+    });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+    $(function() {
+        $('.navbar-toggler').click(function() {
+            $('body').toggleClass('noscroll');
+        })
+    });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="/assets/website/js/frontend/v2raynode/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
