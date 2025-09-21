@@ -1,4 +1,4 @@
-# 9月21日|19.7M/S，最新高速免费节点，SSR/Clash/V2ray/Shadowrocket订阅链接地址，科学上网  更新时间 2025-09-21 10:41:35
+# 9月21日|18.5M/S，最新高速免费节点，Clash/Shadowrocket/V2ray/SSR订阅链接地址，科学上网  更新时间 2025-09-21 21:32:15
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://v2raynode.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
