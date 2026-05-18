@@ -244,16 +244,6 @@ sudo apt install unzip tar
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Sing-box 如何按域名分流优化浏览器流量？</h5></div>
-    <div class="panel-body">
-        Sing-box 可通过规则匹配域名，将浏览器流量分配到最优节点。结合策略组，可保证网页访问速度和稳定性，同时优化视频和游戏等其他流量，提高整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 的伪装域名为什么重要？</h5></div>
-    <div class="panel-body">
-        伪装域名必须真实可访问且证书有效，以使流量看起来像普通 HTTPS 请求。正确配置可以降低被封锁和 DPI 检测风险，提高节点安全性和长期可用性。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Nekoray 如何实现节点订阅自动更新？</h5></div>
     <div class="panel-body">
         用户可添加订阅 URL，Nekoray 定期自动下载并更新节点。这样可保持节点列表最新，有效减少手动维护，提高使用效率，同时保证网络连接稳定和可靠。<hr />    </div>
@@ -269,9 +259,9 @@ sudo apt install unzip tar
         检查是否启用了大量日志或复杂脚本，关闭不必要的规则提供者与日志调试；在多核服务器上启用并发或调整线程数；更新到最新版本以获得性能优化，并监控是否有异常连接导致处理压力。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hiddify Next 的主要用途是什么？</h5></div>
+    <div class="panel-heading"><h5>Sing-box 如何按域名分流优化浏览器流量？</h5></div>
     <div class="panel-body">
-        Hiddify Next 是 Hiddify 系列的新版本，集成了 VLESS、Trojan、Reality 等新型协议支持。它为用户提供一站式代理配置与分享功能，适合初学者快速上手使用。<hr />    </div>
+        Sing-box 可通过规则匹配域名，将浏览器流量分配到最优节点。结合策略组，可保证网页访问速度和稳定性，同时优化视频和游戏等其他流量，提高整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
@@ -279,19 +269,29 @@ sudo apt install unzip tar
         TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响指定应用。TUN 更适合全局加速，如游戏、视频和浏览器流量，提高网络稳定性和覆盖范围。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + XTLS 模式能减少握手延迟吗？</h5></div>
+    <div class="panel-body">
+        XTLS 通过减少握手次数和加密开销，降低延迟，特别适合短连接或高并发场景。结合策略组，可保证连接稳定性和访问速度，适用于移动网络和游戏环境。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>Mellow 的 TUN 模式是否支持全局游戏加速？</h5></div>
     <div class="panel-body">
         支持。TUN 模式拦截系统 IP 层流量，实现全局代理，确保游戏和其他应用的 UDP/TCP 流量都走代理节点，从而降低延迟，提高游戏体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>V2Ray QUIC 模式在高丢包网络的优势？</h5></div>
+    <div class="panel-heading"><h5>Trojan 的伪装域名为什么重要？</h5></div>
     <div class="panel-body">
-        QUIC 基于 UDP 支持多路复用和零握手，减少延迟和丢包。适合视频、游戏和即时通讯流量，保证高丢包环境下网络稳定性和访问速度，提高整体体验。<hr />    </div>
+        伪装域名必须真实可访问且证书有效，以使流量看起来像普通 HTTPS 请求。正确配置可以降低被封锁和 DPI 检测风险，提高节点安全性和长期可用性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + XTLS 模式能减少握手延迟吗？</h5></div>
+    <div class="panel-heading"><h5>Hiddify Next 的主要用途是什么？</h5></div>
     <div class="panel-body">
-        XTLS 通过减少握手次数和加密开销，降低延迟，特别适合短连接或高并发场景。结合策略组，可保证连接稳定性和访问速度，适用于移动网络和游戏环境。    </div>
+        Hiddify Next 是 Hiddify 系列的新版本，集成了 VLESS、Trojan、Reality 等新型协议支持。它为用户提供一站式代理配置与分享功能，适合初学者快速上手使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>V2Ray QUIC 模式在高丢包网络的优势？</h5></div>
+    <div class="panel-body">
+        QUIC 基于 UDP 支持多路复用和零握手，减少延迟和丢包。适合视频、游戏和即时通讯流量，保证高丢包环境下网络稳定性和访问速度，提高整体体验。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -320,16 +320,16 @@ sudo apt install unzip tar
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-4-26-clash-windows.htm" title="4月26日|18.7M/S，最新高速免费节点，Shadowrocket节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网">4月26日|18.7M/S，最新高速免费节点，Shadowrocket节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-25-free-shadowrocket-node.htm" title="4月25日|21.5M/S，最新高速免费节点，Shadowrocket节点/Trojan节点/Clash节点/SSR节点/Singbox节点/V2ray节点订阅链接地址，科学上网">4月25日|21.5M/S，最新高速免费节点，Shadowrocket节点/Trojan节点/Clash节点/SSR节点/Singbox节点/V2ray节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-30-free-shadowrocket-node.htm" title="4月30日|19.3M/S，最新高速免费节点，V2ray节点/Trojan节点/Shadowrocket节点/Singbox节点/SSR节点/Clash节点订阅链接地址，科学上网">4月30日|19.3M/S，最新高速免费节点，V2ray节点/Trojan节点/Shadowrocket节点/Singbox节点/SSR节点/Clash节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-18-free-subscribe-node.htm" title="4月18日|21.1M/S，最新高速免费节点，Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点/Trojan节点订阅链接地址，科学上网">4月18日|21.1M/S，最新高速免费节点，Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点/Trojan节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-12-free-ssr-node.htm" title="4月12日|22.2M/S，最新高速免费节点，V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网">4月12日|22.2M/S，最新高速免费节点，V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-15-node-share.htm" title="4月15日|22.3M/S，最新高速免费节点，Shadowrocket节点/SSR节点/Clash节点/V2ray节点/Trojan节点/Singbox节点订阅链接地址，科学上网">4月15日|22.3M/S，最新高速免费节点，Shadowrocket节点/SSR节点/Clash节点/V2ray节点/Trojan节点/Singbox节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-7-node-share-links.htm" title="5月7日|19.5M/S，最新高速免费节点，V2ray节点/SSR节点/Trojan节点/Singbox节点/Shadowrocket节点/Clash节点订阅链接地址，科学上网">5月7日|19.5M/S，最新高速免费节点，V2ray节点/SSR节点/Trojan节点/Singbox节点/Shadowrocket节点/Clash节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-6-free-subscribe-node.htm" title="5月6日|19.9M/S，最新高速免费节点，SSR节点/Clash节点/Trojan节点/Singbox节点/Shadowrocket节点/V2ray节点订阅链接地址，科学上网">5月6日|19.9M/S，最新高速免费节点，SSR节点/Clash节点/Trojan节点/Singbox节点/Shadowrocket节点/V2ray节点订阅链接地址，科学上网</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-20-free-shadowrocket-node.htm" title="4月20日|18.4M/S，最新高速免费节点，SSR节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/Clash节点订阅链接地址，科学上网">4月20日|18.4M/S，最新高速免费节点，SSR节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/Clash节点订阅链接地址，科学上网</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-5-11-clash-windows.htm" title="5月11日|21.7M/S，最新高速免费节点，Clash节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/SSR节点订阅链接地址，科学上网">5月11日|21.7M/S，最新高速免费节点，Clash节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/SSR节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-11-free-high-speed-nodes.htm" title="4月11日|20.7M/S，最新高速免费节点，Singbox节点/Clash节点/Trojan节点/Shadowrocket节点/SSR节点/V2ray节点订阅链接地址，科学上网">4月11日|20.7M/S，最新高速免费节点，Singbox节点/Clash节点/Trojan节点/Shadowrocket节点/SSR节点/V2ray节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-22-free-clash-subscribe.htm" title="4月22日|18.9M/S，最新高速免费节点，Singbox节点/Shadowrocket节点/V2ray节点/SSR节点/Clash节点/Trojan节点订阅链接地址，科学上网">4月22日|18.9M/S，最新高速免费节点，Singbox节点/Shadowrocket节点/V2ray节点/SSR节点/Clash节点/Trojan节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-10-node-share-links.htm" title="4月10日|20.7M/S，最新高速免费节点，V2ray节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点/Clash节点订阅链接地址，科学上网">4月10日|20.7M/S，最新高速免费节点，V2ray节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点/Clash节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-15-node-share.htm" title="4月15日|22.3M/S，最新高速免费节点，Shadowrocket节点/SSR节点/Clash节点/V2ray节点/Trojan节点/Singbox节点订阅链接地址，科学上网">4月15日|22.3M/S，最新高速免费节点，Shadowrocket节点/SSR节点/Clash节点/V2ray节点/Trojan节点/Singbox节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-2-free-v2ray.htm" title="5月2日|21.3M/S，最新高速免费节点，Trojan节点/Clash节点/V2ray节点/SSR节点/Shadowrocket节点/Singbox节点订阅链接地址，科学上网">5月2日|21.3M/S，最新高速免费节点，Trojan节点/Clash节点/V2ray节点/SSR节点/Shadowrocket节点/Singbox节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-30-free-shadowrocket-node.htm" title="4月30日|19.3M/S，最新高速免费节点，V2ray节点/Trojan节点/Shadowrocket节点/Singbox节点/SSR节点/Clash节点订阅链接地址，科学上网">4月30日|19.3M/S，最新高速免费节点，V2ray节点/Trojan节点/Shadowrocket节点/Singbox节点/SSR节点/Clash节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-14-free-ssr-node.htm" title="4月14日|19.6M/S，最新高速免费节点，Clash节点/SSR节点/Singbox节点/Trojan节点/Shadowrocket节点/V2ray节点订阅链接地址，科学上网">4月14日|19.6M/S，最新高速免费节点，Clash节点/SSR节点/Singbox节点/Trojan节点/Shadowrocket节点/V2ray节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-8-free-clash-subscribe.htm" title="5月8日|19.3M/S，最新高速免费节点，V2ray节点/SSR节点/Trojan节点/Shadowrocket节点/Clash节点/Singbox节点订阅链接地址，科学上网">5月8日|19.3M/S，最新高速免费节点，V2ray节点/SSR节点/Trojan节点/Shadowrocket节点/Clash节点/Singbox节点订阅链接地址，科学上网</a></li>
                     </ul>
     </div>
 </div>
@@ -344,7 +344,7 @@ sudo apt install unzip tar
                 <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>

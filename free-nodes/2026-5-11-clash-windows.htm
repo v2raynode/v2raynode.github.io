@@ -159,27 +159,38 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/2026-5-10-free-shadowrocket-node.htm">5月10日|22.5M/S，最新高速免费节点，Shadowrocket节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网</a></p>
+        <p>下一个：<a href="/free-nodes/2026-5-12-clash-node.htm">5月12日|19M/S，最新高速免费节点，V2ray节点/Singbox节点/Trojan节点/Shadowrocket节点/Clash节点/SSR节点订阅链接地址，科学上网</a></p>
     </div>
 <h4>FAQ</h4>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 是否还值得使用？</h5></div>
-    <div class="panel-body">
-        虽然 SSR 的开发早已停止，但由于它配置简单且部分节点仍然兼容，仍有一定使用场景。不过建议用户逐步迁移到更安全的新协议如 VLESS 或 Trojan，以获得更佳性能与隐蔽性。<hr />    </div>
-</div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>WinXray 的多出口功能如何使用？</h5></div>
     <div class="panel-body">
         WinXray 支持同时配置多个 outbound 节点，并通过路由规则或策略组选择不同出口。这样可以根据流量类型或目的地自动选择节点，实现灵活分流和负载均衡。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 节点延迟排序如何提高访问速度？</h5></div>
-    <div class="panel-body">
-        Matsuri 定期测速节点延迟，结合策略组自动选择延迟最低节点处理流量。用户无需手动切换节点即可保持高速访问，提高网页浏览、视频播放和游戏体验的稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Hiddify Next 如何实现用户流量分配？</h5></div>
     <div class="panel-body">
         管理员可为每个用户设置带宽和流量配额。超出限制时可自动降速或阻止访问，确保服务器资源合理分配，避免单用户占用过多带宽，提高整体网络公平性和效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 节点延迟高、丢包严重，常见排查步骤有哪些？</h5></div>
+    <div class="panel-body">
+        先用 ping 和 traceroute 检查到服务器的延迟与路由跳数；再通过测速工具测带宽并尝试更换不同出站端口或混淆方式；若仍然不稳，考虑更换节点或联系客服查看服务端链路质量。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 如何配置策略组优先节点？</h5></div>
+    <div class="panel-body">
+        在 Clash 中，用户可以通过策略组设置节点优先级，优先使用延迟低、稳定性高的节点。结合规则文件，可以根据域名或 IP 自动选择最优节点，实现更高效的网络访问体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 是否还值得使用？</h5></div>
+    <div class="panel-body">
+        虽然 SSR 的开发早已停止，但由于它配置简单且部分节点仍然兼容，仍有一定使用场景。不过建议用户逐步迁移到更安全的新协议如 VLESS 或 Trojan，以获得更佳性能与隐蔽性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Clash 的规则模式有哪些？</h5></div>
+    <div class="panel-body">
+        Clash 提供三种主要模式：Global（全局代理）、Rule（规则代理）和Direct（直连）。全局模式会让所有流量通过代理；规则模式根据规则文件自动分流；直连模式则完全不经过代理。用户可根据需求灵活切换。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>VMess 节点的 alterId 参数还需要设置吗？</h5></div>
@@ -192,24 +203,14 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         可以。用户可定义延迟阈值，当节点延迟超过设定值时，策略组会自动切换至其他低延迟节点，提高网络速度和稳定性，优化访问体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 节点延迟排序如何提高访问速度？</h5></div>
+    <div class="panel-body">
+        Matsuri 定期测速节点延迟，结合策略组自动选择延迟最低节点处理流量。用户无需手动切换节点即可保持高速访问，提高网页浏览、视频播放和游戏体验的稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的 ws+tls 传输模式有什么优点？</h5></div>
     <div class="panel-body">
-        ws+tls 模式利用 WebSocket 伪装成普通 HTTPS 流量，使得防火墙难以区分代理与正常访问。该模式兼容性强，适合部署在支持 Nginx 或 Caddy 的 Web 服务器上。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的规则模式有哪些？</h5></div>
-    <div class="panel-body">
-        Clash 提供三种主要模式：Global（全局代理）、Rule（规则代理）和Direct（直连）。全局模式会让所有流量通过代理；规则模式根据规则文件自动分流；直连模式则完全不经过代理。用户可根据需求灵活切换。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 如何配置策略组优先节点？</h5></div>
-    <div class="panel-body">
-        在 Clash 中，用户可以通过策略组设置节点优先级，优先使用延迟低、稳定性高的节点。结合规则文件，可以根据域名或 IP 自动选择最优节点，实现更高效的网络访问体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 节点延迟高、丢包严重，常见排查步骤有哪些？</h5></div>
-    <div class="panel-body">
-        先用 ping 和 traceroute 检查到服务器的延迟与路由跳数；再通过测速工具测带宽并尝试更换不同出站端口或混淆方式；若仍然不稳，考虑更换节点或联系客服查看服务端链路质量。    </div>
+        ws+tls 模式利用 WebSocket 伪装成普通 HTTPS 流量，使得防火墙难以区分代理与正常访问。该模式兼容性强，适合部署在支持 Nginx 或 Caddy 的 Web 服务器上。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -238,16 +239,16 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-4-15-node-share.htm" title="4月15日|22.3M/S，最新高速免费节点，Shadowrocket节点/SSR节点/Clash节点/V2ray节点/Trojan节点/Singbox节点订阅链接地址，科学上网">4月15日|22.3M/S，最新高速免费节点，Shadowrocket节点/SSR节点/Clash节点/V2ray节点/Trojan节点/Singbox节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-5-8-free-clash-subscribe.htm" title="5月8日|19.3M/S，最新高速免费节点，V2ray节点/SSR节点/Trojan节点/Shadowrocket节点/Clash节点/Singbox节点订阅链接地址，科学上网">5月8日|19.3M/S，最新高速免费节点，V2ray节点/SSR节点/Trojan节点/Shadowrocket节点/Clash节点/Singbox节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-14-free-ssr-node.htm" title="4月14日|19.6M/S，最新高速免费节点，Clash节点/SSR节点/Singbox节点/Trojan节点/Shadowrocket节点/V2ray节点订阅链接地址，科学上网">4月14日|19.6M/S，最新高速免费节点，Clash节点/SSR节点/Singbox节点/Trojan节点/Shadowrocket节点/V2ray节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-20-free-shadowrocket-node.htm" title="4月20日|18.4M/S，最新高速免费节点，SSR节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/Clash节点订阅链接地址，科学上网">4月20日|18.4M/S，最新高速免费节点，SSR节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/Clash节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-28-free-ssr-node.htm" title="4月28日|21.4M/S，最新高速免费节点，Clash节点/SSR节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点订阅链接地址，科学上网">4月28日|21.4M/S，最新高速免费节点，Clash节点/SSR节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-13-node-share.htm" title="4月13日|19.6M/S，最新高速免费节点，Clash节点/V2ray节点/SSR节点/Trojan节点/Shadowrocket节点/Singbox节点订阅链接地址，科学上网">4月13日|19.6M/S，最新高速免费节点，Clash节点/V2ray节点/SSR节点/Trojan节点/Shadowrocket节点/Singbox节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-18-free-subscribe-node.htm" title="4月18日|21.1M/S，最新高速免费节点，Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点/Trojan节点订阅链接地址，科学上网">4月18日|21.1M/S，最新高速免费节点，Shadowrocket节点/Singbox节点/V2ray节点/Clash节点/SSR节点/Trojan节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-27-free-clash-subscribe.htm" title="4月27日|22M/S，最新高速免费节点，Trojan节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点/V2ray节点订阅链接地址，科学上网">4月27日|22M/S，最新高速免费节点，Trojan节点/Clash节点/SSR节点/Singbox节点/Shadowrocket节点/V2ray节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-12-free-ssr-node.htm" title="4月12日|22.2M/S，最新高速免费节点，V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网">4月12日|22.2M/S，最新高速免费节点，V2ray节点/Clash节点/Shadowrocket节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-13-free-high-speed-nodes.htm" title="5月13日|20.9M/S，最新高速免费节点，Trojan节点/Singbox节点/SSR节点/Clash节点/V2ray节点/Shadowrocket节点订阅链接地址，科学上网">5月13日|20.9M/S，最新高速免费节点，Trojan节点/Singbox节点/SSR节点/Clash节点/V2ray节点/Shadowrocket节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-18-shadowrocket-node.htm" title="5月18日|21M/S，最新高速免费节点，Clash节点/SSR节点/V2ray节点/Singbox节点/Shadowrocket节点/Trojan节点订阅链接地址，科学上网">5月18日|21M/S，最新高速免费节点，Clash节点/SSR节点/V2ray节点/Singbox节点/Shadowrocket节点/Trojan节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-10-free-shadowrocket-node.htm" title="5月10日|22.5M/S，最新高速免费节点，Shadowrocket节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网">5月10日|22.5M/S，最新高速免费节点，Shadowrocket节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-9-clash-node-daily-updates.htm" title="5月9日|18.3M/S，最新高速免费节点，SSR节点/Singbox节点/V2ray节点/Shadowrocket节点/Clash节点/Trojan节点订阅链接地址，科学上网">5月9日|18.3M/S，最新高速免费节点，SSR节点/Singbox节点/V2ray节点/Shadowrocket节点/Clash节点/Trojan节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-30-free-shadowrocket-node.htm" title="4月30日|19.3M/S，最新高速免费节点，V2ray节点/Trojan节点/Shadowrocket节点/Singbox节点/SSR节点/Clash节点订阅链接地址，科学上网">4月30日|19.3M/S，最新高速免费节点，V2ray节点/Trojan节点/Shadowrocket节点/Singbox节点/SSR节点/Clash节点订阅链接地址，科学上网</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-5-11-clash-windows.htm" title="5月11日|21.7M/S，最新高速免费节点，Clash节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/SSR节点订阅链接地址，科学上网">5月11日|21.7M/S，最新高速免费节点，Clash节点/Singbox节点/Trojan节点/V2ray节点/Shadowrocket节点/SSR节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-23-node-share.htm" title="4月23日|19.7M/S，最新高速免费节点，Singbox节点/V2ray节点/Shadowrocket节点/Trojan节点/SSR节点/Clash节点订阅链接地址，科学上网">4月23日|19.7M/S，最新高速免费节点，Singbox节点/V2ray节点/Shadowrocket节点/Trojan节点/SSR节点/Clash节点订阅链接地址，科学上网</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-26-clash-windows.htm" title="4月26日|18.7M/S，最新高速免费节点，Shadowrocket节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网">4月26日|18.7M/S，最新高速免费节点，Shadowrocket节点/V2ray节点/Clash节点/Trojan节点/SSR节点/Singbox节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-3-free-high-speed-nodes.htm" title="5月3日|21.7M/S，最新高速免费节点，SSR节点/Clash节点/Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点订阅链接地址，科学上网">5月3日|21.7M/S，最新高速免费节点，SSR节点/Clash节点/Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点订阅链接地址，科学上网</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-24-free-high-speed-nodes.htm" title="4月24日|20.4M/S，最新高速免费节点，SSR节点/Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点/Clash节点订阅链接地址，科学上网">4月24日|20.4M/S，最新高速免费节点，SSR节点/Shadowrocket节点/Trojan节点/V2ray节点/Singbox节点/Clash节点订阅链接地址，科学上网</a></li>
                     </ul>
     </div>
 </div>
@@ -259,10 +260,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">19</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
